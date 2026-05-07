@@ -12,31 +12,31 @@ export default function HomePage() {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <div className="inline-block px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-medium mb-6">
-                🌟 Trusted by 50,000+ students worldwide
+                🌟 Более 50.000 учеников по всему Миру
               </div>
               <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-                Master English at Your Own Pace
+                Изучайте английский дома!
               </h1>
               <p className="text-xl text-gray-600 mb-8">
-                Learn from certified teachers with personalized lessons, interactive exercises, and real-time practice. From A1 to C1, we'll guide you every step of the way.
+                Обучайтесь с сертифицированными учителями с персонализированным подходом, интерактивными заданиями, и практикой. От уровня A1 до уровня C1, мы будем тебя сопровождать.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button size="lg" asChild className="text-lg">
                   <Link to="/signup">
-                    Start Learning Free <ArrowRight className="ml-2 w-5 h-5" />
+                    Выбрать курс <ArrowRight className="ml-2 w-5 h-5" />
                   </Link>
                 </Button>
                 <Button size="lg" variant="outline" asChild className="text-lg">
-                  <Link to="/level-test">Take Level Test</Link>
+                  <Link to="/level-test">Узнать свой уровень</Link>
                 </Button>
               </div>
               <div className="flex items-center gap-6 mt-8">
                 <div className="flex items-center gap-2">
                   <Star className="w-5 h-5 text-yellow-500 fill-yellow-500" />
-                  <span className="text-sm text-gray-600">4.9/5 rating</span>
+                  <span className="text-sm text-gray-600">4.9/5 оценка учеников</span>
                 </div>
                 <div className="text-sm text-gray-600">
-                  <span className="font-semibold">12,000+</span> reviews
+                  <span className="font-semibold">12.000</span> довольных отзывов
                 </div>
               </div>
             </div>
@@ -51,63 +51,62 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Stats Section */}
       <section className="py-16 bg-white border-y border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <div className="text-center">
               <div className="text-4xl font-bold text-blue-600 mb-2">50K+</div>
-              <div className="text-gray-600">Active Students</div>
+              <div className="text-gray-600">Активных студентов</div>
             </div>
             <div className="text-center">
               <div className="text-4xl font-bold text-purple-600 mb-2">200+</div>
-              <div className="text-gray-600">Expert Teachers</div>
+              <div className="text-gray-600">Квалифицированных учителей</div>
             </div>
             <div className="text-center">
               <div className="text-4xl font-bold text-green-600 mb-2">95%</div>
-              <div className="text-gray-600">Success Rate</div>
+              <div className="text-gray-600">Успешных кейсов</div>
             </div>
             <div className="text-center">
               <div className="text-4xl font-bold text-orange-600 mb-2">150+</div>
-              <div className="text-gray-600">Countries</div>
+              <div className="text-gray-600">Стран Мира</div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* How It Works */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">How It Works</h2>
-            <p className="text-xl text-gray-600">Start your English learning journey in 3 simple steps</p>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Как начать?</h2>
+            <p className="text-xl text-gray-600">Начни изучение английского языка в 3 шага</p>
           </div>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="bg-white rounded-xl p-8 shadow-sm hover:shadow-md transition-shadow">
               <div className="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center mb-6">
                 <BookOpen className="w-7 h-7 text-blue-600" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">1. Take a Level Test</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">1. Пройди тест на определение уровня</h3>
               <p className="text-gray-600">
-                Start with our free assessment to determine your current English level (A1-C1) and get personalized course recommendations.
+                Начни обучение с определения уровня на сайте. Система подберет персонализированный курс для Вас.
               </p>
             </div>
             <div className="bg-white rounded-xl p-8 shadow-sm hover:shadow-md transition-shadow">
               <div className="w-14 h-14 bg-purple-100 rounded-full flex items-center justify-center mb-6">
                 <Users className="w-7 h-7 text-purple-600" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">2. Choose Your Teacher</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">2. Подберите учителя,
+                с которым вы хотите работать</h3>
               <p className="text-gray-600">
-                Browse our certified teachers, read reviews, and select the perfect match for your learning style and goals.
+                Выберите учителя из нашего списка квалифицированных специалистов
               </p>
             </div>
             <div className="bg-white rounded-xl p-8 shadow-sm hover:shadow-md transition-shadow">
               <div className="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center mb-6">
                 <Video className="w-7 h-7 text-green-600" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">3. Start Learning</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">3. Начните обучение</h3>
               <p className="text-gray-600">
-                Attend live video lessons, complete interactive exercises, and track your progress as you advance to fluency.
+                Участвуйте в видео уроках, выполняйте интерактивные задания
               </p>
             </div>
           </div>
@@ -118,17 +117,17 @@ export default function HomePage() {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Why Choose EnglishPro?</h2>
-            <p className="text-xl text-gray-600">Everything you need to master English fluently</p>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Почему LinguaFirst?</h2>
+            <p className="text-xl text-gray-600">Наши преимущества</p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
-              { icon: Video, title: 'Live Video Lessons', desc: 'Face-to-face interaction with expert teachers in real-time' },
-              { icon: BookOpen, title: 'Interactive Materials', desc: 'Engaging exercises, quizzes, and multimedia content' },
-              { icon: Globe, title: 'Learn Anytime, Anywhere', desc: 'Access your lessons on any device, at your convenience' },
-              { icon: CheckCircle2, title: 'Proven Methodology', desc: 'CEFR-aligned curriculum from A1 to C1 levels' },
-              { icon: Users, title: 'Small Group Classes', desc: 'Maximum 6 students per class for personalized attention' },
-              { icon: Star, title: 'Certified Teachers', desc: 'All teachers are TESOL/CELTA certified with 5+ years experience' },
+              { icon: Video, title: 'Онлайн уроки', desc: 'Уроки с учителем онлайн' },
+              { icon: BookOpen, title: 'Интерактивные материалы', desc: 'Задания, тесты и квизы' },
+              { icon: Globe, title: 'Онлайн уроки', desc: 'Уроки с учителем онлайн' },
+              { icon: CheckCircle2, title: 'Небольшие группы', desc: 'Групповые занятия до 6 учеников' },
+              { icon: Users, title: 'Сертифицированные учителя', desc: 'Квалифицированные учителя с опытом +3 года' },
+              { icon: Star, title: 'Обучайтесь где и когда угодно', desc: 'Через любое устройство' },
             ].map((feature, index) => (
               <div key={index} className="flex gap-4">
                 <div className="flex-shrink-0">
@@ -145,20 +144,18 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-      {/* CTA Section */}
       <section className="py-20 bg-gradient-to-br from-blue-600 to-purple-600 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl font-bold mb-6">Ready to Start Your English Journey?</h2>
+          <h2 className="text-4xl font-bold mb-6">Начать обучение</h2>
           <p className="text-xl mb-8 opacity-90">
-            Join thousands of students who have achieved their language goals with EnglishPro
+            Присоединяйся к 50.000 ученикам в изучении английского языка
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" variant="secondary" asChild className="text-lg">
-              <Link to="/signup">Start Free Trial</Link>
+              <Link to="/signup">Записаться <ArrowRight/></Link>
             </Button>
             <Button size="lg" variant="outline" asChild className="text-lg bg-transparent border-white text-white hover:bg-white/10">
-              <Link to="/level-test">Take Level Test</Link>
+              <Link to="/level-test">Узнать уровень <ArrowRight/></Link>
             </Button>
           </div>
         </div>

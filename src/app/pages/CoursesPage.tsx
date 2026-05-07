@@ -8,48 +8,43 @@ import { Clock, BookOpen, ArrowRight } from 'lucide-react';
 export default function CoursesPage() {
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Hero Section */}
       <section className="bg-gradient-to-br from-blue-600 to-purple-600 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
-            <h1 className="text-5xl font-bold mb-6">English Courses & Levels</h1>
+            <h1 className="text-5xl font-bold mb-6">Наши программы</h1>
             <p className="text-xl opacity-90">
-              Choose your path from beginner (A1) to advanced (C1). Our courses follow the Common European Framework of Reference (CEFR) standards.
+              Выберите свой уровень — от начального (A1) до продвинутого (C1). Наши курсы соответствуют стандартам Общеевропейской системы оценки знаний (CEFR).
             </p>
           </div>
         </div>
       </section>
-
-      {/* CEFR Explanation */}
       <section className="py-12 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-blue-50 rounded-xl p-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Understanding CEFR Levels</h2>
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">Понимание уровней CEFR</h2>
             <div className="grid md:grid-cols-3 gap-6">
               <div>
-                <h3 className="font-semibold text-gray-900 mb-2">Basic User (A1-A2)</h3>
+                <h3 className="font-semibold text-gray-900 mb-2">Начальный уровень (A1–A2)</h3>
                 <p className="text-sm text-gray-600">
-                  Can understand and use familiar everyday expressions and basic phrases. Can introduce themselves and ask simple questions.
+                  Понимает и использует привычные повседневные выражения и простые фразы. Умеет представиться и задавать простые вопросы.
                 </p>
               </div>
               <div>
-                <h3 className="font-semibold text-gray-900 mb-2">Independent User (B1-B2)</h3>
+                <h3 className="font-semibold text-gray-900 mb-2">Продолжающий уровень (B1–B2)</h3>
                 <p className="text-sm text-gray-600">
-                  Can deal with most situations while traveling. Can produce clear text and describe experiences, events, and opinions.
+                  Способен справляться с большинством ситуаций. Может излагать свои мысли ясно и описывать свои впечатления, события и мнения.
                 </p>
               </div>
               <div>
-                <h3 className="font-semibold text-gray-900 mb-2">Proficient User (C1-C2)</h3>
+                <h3 className="font-semibold text-gray-900 mb-2">Продвинутый уровень (C1-C2)</h3>
                 <p className="text-sm text-gray-600">
-                  Can express themselves fluently and spontaneously. Can produce clear, well-structured text on complex subjects.
+                  Способен свободно и спонтанно выражать свои мысли. Способен создавать четкие, хорошо структурированные тексты на сложные темы.
                 </p>
               </div>
             </div>
           </div>
         </div>
       </section>
-
-      {/* Courses Grid */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -73,11 +68,11 @@ export default function CoursesPage() {
                     </div>
                     <div className="flex items-center gap-2 text-sm text-gray-600">
                       <BookOpen className="w-4 h-4" />
-                      <span>{course.lessons} lessons</span>
+                      <span>{course.lessons} {course.lessons === 24 ? 'урока' : 'занятия'}</span>
                     </div>
                   </div>
                   <div className="border-t border-gray-200 pt-4">
-                    <h4 className="font-semibold text-sm text-gray-900 mb-2">You will learn:</h4>
+                    <h4 className="font-semibold text-sm text-gray-900 mb-2">Вы изучите:</h4>
                     <ul className="space-y-1">
                       {course.skills.map((skill, index) => (
                         <li key={index} className="text-sm text-gray-600 flex items-start gap-2">
@@ -91,7 +86,7 @@ export default function CoursesPage() {
                 <CardFooter>
                   <Button className="w-full" asChild>
                     <Link to="/signup">
-                      Enroll Now <ArrowRight className="ml-2 w-4 h-4" />
+                      Записаться <ArrowRight className="ml-2 w-4 h-4" />
                     </Link>
                   </Button>
                 </CardFooter>
@@ -100,16 +95,14 @@ export default function CoursesPage() {
           </div>
         </div>
       </section>
-
-      {/* Not Sure Section */}
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">Not Sure Which Level to Choose?</h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">Сомневаешься в выборе?</h2>
           <p className="text-lg text-gray-600 mb-8">
-            Take our free 10-minute assessment test to find your perfect starting point
+            Пройди тест на определение уровня и мы подберм лучшее решенеие
           </p>
           <Button size="lg" asChild>
-            <Link to="/level-test">Take Level Test</Link>
+            <Link to="/level-test">Пройти тест <ArrowRight/></Link>
           </Button>
         </div>
       </section>

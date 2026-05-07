@@ -35,7 +35,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const signup = async (email: string, password: string, name: string, role: UserRole) => {
-    // Mock signup - in real app, this would call an API
     await new Promise(resolve => setTimeout(resolve, 500));
     setUser({
       id: Math.random().toString(36).substr(2, 9),
