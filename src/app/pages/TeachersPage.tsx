@@ -9,33 +9,16 @@ import { ImageWithFallback } from '../components/figma/ImageWithFallback';
 export default function TeachersPage() {
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Hero Section */}
       <section className="bg-gradient-to-br from-purple-600 to-blue-600 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
-            <h1 className="text-5xl font-bold mb-6">Meet Our Expert Teachers</h1>
+            <h1 className="text-5xl font-bold mb-6">Наши учителя</h1>
             <p className="text-xl opacity-90">
-              All our teachers are certified professionals with years of experience helping students achieve their English learning goals.
+              Выберите свой уровень — от начального (A1) до продвинутого (C1). Наши курсы соответствуют стандартам Общеевропейской системы оценки знаний (CEFR).
             </p>
           </div>
         </div>
       </section>
-
-      {/* Filters - Could add functional filters here */}
-      <section className="py-8 bg-white border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap gap-3">
-            <Badge variant="outline" className="cursor-pointer hover:bg-gray-100">All Teachers</Badge>
-            <Badge variant="outline" className="cursor-pointer hover:bg-gray-100">IELTS Prep</Badge>
-            <Badge variant="outline" className="cursor-pointer hover:bg-gray-100">Business English</Badge>
-            <Badge variant="outline" className="cursor-pointer hover:bg-gray-100">Conversation</Badge>
-            <Badge variant="outline" className="cursor-pointer hover:bg-gray-100">Kids & Teens</Badge>
-            <Badge variant="outline" className="cursor-pointer hover:bg-gray-100">Grammar</Badge>
-          </div>
-        </div>
-      </section>
-
-      {/* Teachers Grid */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -57,7 +40,9 @@ export default function TeachersPage() {
                   </div>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  {/* Stats */}
+                  <div className="pt-2">
+                    <Badge variant="outline">{teacher.experience} опыт</Badge>
+                  </div>
                   <div className="flex items-center gap-4 text-sm">
                     <div className="flex items-center gap-1">
                       <Star className="w-4 h-4 text-yellow-500 fill-yellow-500" />
@@ -68,17 +53,11 @@ export default function TeachersPage() {
                       <span>{teacher.students} students</span>
                     </div>
                   </div>
-
-                  {/* Bio */}
                   <p className="text-sm text-gray-600">{teacher.bio}</p>
-
-                  {/* Education */}
                   <div className="flex items-start gap-2 text-sm">
                     <GraduationCap className="w-4 h-4 text-gray-400 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-600">{teacher.education}</span>
                   </div>
-
-                  {/* Languages */}
                   <div className="flex items-start gap-2 text-sm">
                     <Globe className="w-4 h-4 text-gray-400 mt-0.5 flex-shrink-0" />
                     <div className="flex flex-wrap gap-2">
@@ -88,11 +67,6 @@ export default function TeachersPage() {
                         </Badge>
                       ))}
                     </div>
-                  </div>
-
-                  {/* Experience Badge */}
-                  <div className="pt-2">
-                    <Badge variant="outline">{teacher.experience} experience</Badge>
                   </div>
                 </CardContent>
                 <div className="px-6 pb-6">
@@ -105,8 +79,6 @@ export default function TeachersPage() {
           </div>
         </div>
       </section>
-
-      {/* Become a Teacher CTA */}
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <GraduationCap className="w-16 h-16 text-blue-600 mx-auto mb-6" />

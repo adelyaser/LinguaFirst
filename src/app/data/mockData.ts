@@ -61,14 +61,14 @@ export const courses = [
 export const teachers = [
   {
     id: '1',
-    name: 'Sarah Johnson',
-    specialty: 'IELTS Preparation',
-    experience: '10 years',
+    name: 'Айсулу Каримова',
+    specialty: 'Подготовка к IELTS',
+    experience: '10 лет',
     rating: 4.9,
     students: 250,
-    bio: 'Cambridge certified teacher specializing in IELTS preparation with a 95% student success rate.',
-    languages: ['English (Native)', 'Spanish (Fluent)'],
-    education: 'MA in Applied Linguistics, University of Cambridge',
+    bio: 'Преподаватель с сертификатом Кембриджского университета, специализирующийся на подготовке к экзамену IELTS, с показателем успешности студентов 95 %.',
+    languages: ['Казахский', 'Английский', 'Русский'],
+    education: 'Магистр прикладной лингвистики, University of Cambridge',
   },
   {
     id: '2',
