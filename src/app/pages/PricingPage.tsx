@@ -3,22 +3,19 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Button } from '../components/ui/button';
 import { Badge } from '../components/ui/badge';
 import { Link } from 'react-router';
-import { Check, X, Sparkles } from 'lucide-react';
+import {Check, X, Sparkles, ArrowRight} from 'lucide-react';
 
 export default function PricingPage() {
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Hero Section */}
       <section className="bg-gradient-to-br from-purple-600 to-blue-600 text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-5xl font-bold mb-6">Simple, Transparent Pricing</h1>
-          <p className="text-xl opacity-90 max-w-2xl mx-auto">
-            Choose the perfect plan for your learning journey. All plans include access to our world-class teachers and materials.
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h1 className="text-5xl font-bold mb-6">Тариф</h1>
+          <p className="text-xl opacity-90">
+            Выберите идеальный тарифный план для своего обучения. Все тарифные планы включают доступ к нашим преподавателям мирового уровня и учебным материалам.
           </p>
         </div>
       </section>
-
-      {/* Pricing Cards */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
@@ -80,29 +77,27 @@ export default function PricingPage() {
           </div>
         </div>
       </section>
-
-      {/* Comparison Table */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">Compare Plans</h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">Сравни тарифы</h2>
           <div className="overflow-x-auto">
             <table className="w-full border-collapse">
               <thead>
                 <tr className="border-b-2 border-gray-200">
                   <th className="text-left py-4 px-4 font-semibold text-gray-900">Feature</th>
-                  <th className="text-center py-4 px-4 font-semibold text-gray-900">Basic</th>
-                  <th className="text-center py-4 px-4 font-semibold text-gray-900 bg-blue-50">Standard</th>
-                  <th className="text-center py-4 px-4 font-semibold text-gray-900">Premium</th>
+                  <th className="text-center py-4 px-4 font-semibold text-gray-900">Базовый</th>
+                  <th className="text-center py-4 px-4 font-semibold text-gray-900 bg-blue-50">Стандартный</th>
+                  <th className="text-center py-4 px-4 font-semibold text-gray-900">Премиум</th>
                 </tr>
               </thead>
               <tbody>
                 {[
-                  { feature: 'Group Lessons/Month', basic: '4', standard: '8', premium: 'Unlimited' },
+                  { feature: 'Group Lessons/Month', basic: '4', standard: '8', premium: 'Безлимит' },
                   { feature: 'One-on-One Lessons/Month', basic: '0', standard: '2', premium: '8' },
-                  { feature: 'Learning Materials', basic: 'Basic', standard: 'All', premium: 'All + Premium' },
+                  { feature: 'Learning Materials', basic: 'Базовые', standard: 'Все', premium: 'Все + дополнительные' },
                   { feature: 'Progress Tracking', basic: '✓', standard: '✓', premium: '✓' },
                   { feature: 'Homework Review', basic: '✗', standard: '✓', premium: '✓' },
-                  { feature: 'Monthly Assessment', basic: '✗', standard: '✓', premium: 'Weekly' },
+                  { feature: 'Monthly Assessment', basic: '✗', standard: '✓', premium: '✓' },
                   { feature: 'Certificate', basic: '✗', standard: '✗', premium: '✓' },
                   { feature: 'Priority Support', basic: '✗', standard: '✗', premium: '✓' },
                   { feature: 'Career Guidance', basic: '✗', standard: '✗', premium: '✓' },
@@ -119,49 +114,20 @@ export default function PricingPage() {
           </div>
         </div>
       </section>
-
-      {/* FAQ Section */}
-      <section className="py-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">Frequently Asked Questions</h2>
-          <div className="space-y-6">
-            {[
-              {
-                q: 'Can I change my plan later?',
-                a: 'Yes! You can upgrade or downgrade your plan at any time. Changes will be reflected in your next billing cycle.',
-              },
-              {
-                q: 'Is there a free trial?',
-                a: 'Yes, we offer a 7-day free trial for all new students. No credit card required to start.',
-              },
-              {
-                q: 'What payment methods do you accept?',
-                a: 'We accept all major credit cards, PayPal, and bank transfers. All payments are secure and encrypted.',
-              },
-              {
-                q: 'Can I cancel anytime?',
-                a: 'Absolutely! You can cancel your subscription at any time. No questions asked, no cancellation fees.',
-              },
-            ].map((faq, index) => (
-              <div key={index} className="bg-white rounded-lg p-6 shadow-sm">
-                <h3 className="font-semibold text-gray-900 mb-2">{faq.q}</h3>
-                <p className="text-gray-600">{faq.a}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
       <section className="py-16 bg-gradient-to-br from-blue-600 to-purple-600 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl font-bold mb-6">Ready to Start Learning?</h2>
+          <h2 className="text-4xl font-bold mb-6">Начать обучение</h2>
           <p className="text-xl mb-8 opacity-90">
-            Join 50,000+ students learning English with EnglishPro
+            Присоединяйся к 50.000 ученикам в изучении английского языка
           </p>
-          <Button size="lg" variant="secondary" asChild>
-            <Link to="/signup">Start Your Free Trial</Link>
-          </Button>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button size="lg" variant="secondary" asChild>
+              <Link to="/signup">Записаться <ArrowRight/></Link>
+            </Button>
+            <Button size="lg" variant="outline" className="bg-transparent border-white text-white hover:bg-white/10" asChild>
+              <Link to="/level-test">Узнать уровень <ArrowRight/></Link>
+            </Button>
+          </div>
         </div>
       </section>
     </div>

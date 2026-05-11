@@ -28,12 +28,12 @@ export default function SignupPage() {
     e.preventDefault();
 
     if (formData.password !== formData.confirmPassword) {
-      toast.error('Passwords do not match');
+      toast.error('Пароль или логин не совпадает');
       return;
     }
 
     if (formData.password.length < 6) {
-      toast.error('Password must be at least 6 characters');
+      toast.error('Пароль должен состоять как минимум из 6 символов.');
       return;
     }
 
@@ -41,10 +41,10 @@ export default function SignupPage() {
 
     try {
       await signup(formData.email, formData.password, formData.name, formData.role as UserRole);
-      toast.success('Account created successfully!');
+      toast.success('Аккаунт создан успешно!');
       navigate(formData.role === 'teacher' ? '/teacher/dashboard' : '/student/dashboard');
     } catch (error) {
-      toast.error('Signup failed. Please try again.');
+      toast.error('Аккаунт не создан. Произошла ошибка.');
     } finally {
       setLoading(false);
     }
@@ -62,21 +62,20 @@ export default function SignupPage() {
           <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
             <GraduationCap className="w-7 h-7 text-white" />
           </div>
-          <span className="text-2xl font-semibold text-gray-900">EnglishPro</span>
+          <span className="text-2xl font-semibold text-gray-900">LinguaFirst</span>
         </Link>
 
         <Card>
           <CardHeader className="space-y-1">
-            <CardTitle className="text-2xl">Create an account</CardTitle>
+            <CardTitle className="text-2xl">Создайте аккаунт</CardTitle>
             <CardDescription>
-              Join thousands of students learning English with EnglishPro
+              Присоединяйтесь к тысячам студентов, изучающих английский язык с LinguaFirst
             </CardDescription>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
-              {/* Role Selection */}
               <div className="space-y-3">
-                <Label>I want to:</Label>
+                <Label>Я хочу:</Label>
                 <RadioGroup
                   value={formData.role}
                   onValueChange={(value) => setFormData({ ...formData, role: value })}
@@ -86,8 +85,8 @@ export default function SignupPage() {
                     <Label htmlFor="student" className="flex items-center gap-2 cursor-pointer flex-1">
                       <User className="w-5 h-5 text-blue-600" />
                       <div>
-                        <div className="font-medium">Learn English</div>
-                        <div className="text-xs text-gray-600">I'm a student</div>
+                        <div className="font-medium">Изучать</div>
+                        <div className="text-xs text-gray-600">Я студент</div>
                       </div>
                     </Label>
                   </div>
@@ -96,8 +95,8 @@ export default function SignupPage() {
                     <Label htmlFor="teacher" className="flex items-center gap-2 cursor-pointer flex-1">
                       <UserCog className="w-5 h-5 text-purple-600" />
                       <div>
-                        <div className="font-medium">Teach English</div>
-                        <div className="text-xs text-gray-600">I'm a teacher</div>
+                        <div className="font-medium">Обучать</div>
+                        <div className="text-xs text-gray-600">Я учитель</div>
                       </div>
                     </Label>
                   </div>
@@ -105,11 +104,11 @@ export default function SignupPage() {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="name">Full Name</Label>
+                <Label htmlFor="name">ФИО</Label>
                 <Input
                   id="name"
                   name="name"
-                  placeholder="John Doe"
+                  placeholder="Jungkook Jeon"
                   value={formData.name}
                   onChange={handleChange}
                   required
@@ -122,7 +121,7 @@ export default function SignupPage() {
                   id="email"
                   name="email"
                   type="email"
-                  placeholder="you@example.com"
+                  placeholder="jungkook@linguafirst.com"
                   value={formData.email}
                   onChange={handleChange}
                   required
@@ -130,7 +129,7 @@ export default function SignupPage() {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
+                <Label htmlFor="password">Пароль</Label>
                 <Input
                   id="password"
                   name="password"
@@ -143,7 +142,7 @@ export default function SignupPage() {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="confirmPassword">Confirm Password</Label>
+                <Label htmlFor="confirmPassword">Повторите пароль</Label>
                 <Input
                   id="confirmPassword"
                   name="confirmPassword"
@@ -156,15 +155,15 @@ export default function SignupPage() {
               </div>
 
               <Button type="submit" className="w-full" disabled={loading}>
-                {loading ? 'Creating account...' : 'Create account'}
+                {loading ? 'Создание учетной записи...' : 'Создать'}
               </Button>
             </form>
           </CardContent>
           <CardFooter>
             <div className="text-sm text-center w-full text-gray-600">
-              Already have an account?{' '}
+              Уже есть аккаунт?{' '}
               <Link to="/login" className="text-blue-600 hover:text-blue-700 font-medium">
-                Log in
+                Войдите
               </Link>
             </div>
           </CardFooter>

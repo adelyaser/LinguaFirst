@@ -5,14 +5,14 @@ import { Card, CardContent, CardHeader, CardTitle } from '../../components/ui/ca
 import { Button } from '../../components/ui/button';
 import { Badge } from '../../components/ui/badge';
 import { Progress } from '../../components/ui/progress';
-import { ArrowLeft, CheckCircle2, Play, Volume2 } from 'lucide-react';
+import {ArrowLeft, ArrowRight, CheckCircle2, Play, Volume2} from 'lucide-react';
 import { toast } from 'sonner';
 
 export default function StudentLessonPage() {
   const { lessonId } = useParams();
   const lesson = mockLessons.find((l) => l.id === lessonId) || mockLessons[0];
 
-  const [videoProgress, setVideoProgress] = useState(0);
+  const [videoProgress, setVideoProgress] = useState(25);
   const [currentExercise, setCurrentExercise] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const [showResult, setShowResult] = useState(false);
@@ -74,7 +74,7 @@ export default function StudentLessonPage() {
       <Button variant="ghost" asChild>
         <Link to="/student/courses">
           <ArrowLeft className="w-4 h-4 mr-2" />
-          Back to Courses
+          Вернуться к курсам
         </Link>
       </Button>
 
@@ -88,7 +88,7 @@ export default function StudentLessonPage() {
       {/* Video Player */}
       <Card>
         <CardHeader>
-          <CardTitle>Video Lesson</CardTitle>
+          <CardTitle>Видео-урок</CardTitle>
         </CardHeader>
         <CardContent>
           {/* Mock Video Player */}
@@ -105,33 +105,16 @@ export default function StudentLessonPage() {
             </Button>
           </div>
 
-          {/* Video Progress */}
           <div className="space-y-2">
-            <div className="flex justify-between text-sm">
-              <span className="text-gray-600">Video Progress</span>
-              <span className="font-medium">{videoProgress}%</span>
-            </div>
             <Progress value={videoProgress} className="h-2" />
           </div>
 
-          {/* Video Controls */}
-          <div className="flex items-center gap-4 mt-4">
-            <Button variant="outline" size="sm">
-              <Volume2 className="w-4 h-4 mr-2" />
-              Adjust Volume
-            </Button>
-            <Button variant="outline" size="sm">
-              Subtitles: English
-            </Button>
-          </div>
         </CardContent>
       </Card>
-
-      {/* Interactive Exercises */}
       <Card>
         <CardHeader>
           <div className="flex items-center justify-between">
-            <CardTitle>Interactive Exercises</CardTitle>
+            <CardTitle>Задания к уроку</CardTitle>
             <Badge variant="outline">
               {currentExercise + 1} of {exercises.length}
             </Badge>
@@ -139,13 +122,6 @@ export default function StudentLessonPage() {
         </CardHeader>
         <CardContent>
           <div className="space-y-6">
-            {/* Exercise Progress */}
-            <Progress
-              value={((currentExercise + 1) / exercises.length) * 100}
-              className="h-2"
-            />
-
-            {/* Current Exercise */}
             <div className="bg-blue-50 rounded-lg p-6">
               <h3 className="text-lg font-semibold text-gray-900 mb-4">
                 {exercises[currentExercise].question}
@@ -194,7 +170,6 @@ export default function StudentLessonPage() {
               )}
             </div>
 
-            {/* Action Buttons */}
             <div className="flex justify-between">
               <Button
                 variant="outline"
@@ -207,12 +182,12 @@ export default function StudentLessonPage() {
                 }}
                 disabled={currentExercise === 0}
               >
-                Previous
+                Предыдущий
               </Button>
 
               {!showResult ? (
                 <Button onClick={handleCheckAnswer} disabled={selectedAnswer === null}>
-                  Check Answer
+                  Следующий <ArrowRight/>
                 </Button>
               ) : (
                 <Button onClick={handleNextExercise}>

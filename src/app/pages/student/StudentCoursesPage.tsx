@@ -6,7 +6,7 @@ import { Progress } from '../../components/ui/progress';
 import { Badge } from '../../components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../../components/ui/tabs';
 import { Link } from 'react-router';
-import { BookOpen, CheckCircle2, Lock, Play } from 'lucide-react';
+import {ArrowRight, BookOpen, CheckCircle2, Lock, Play} from 'lucide-react';
 
 export default function StudentCoursesPage() {
   const [activeTab, setActiveTab] = useState('in-progress');
@@ -22,19 +22,30 @@ export default function StudentCoursesPage() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">My Courses</h1>
-        <p className="text-gray-600">Track your progress and continue learning</p>
+        <h1 className="text-3xl font-bold text-gray-900 mb-2">Мои курсы</h1>
+        <p className="text-gray-600">Уроки и отслеживание прогресса</p>
+      </div>
+      <div className="grid md:grid-cols-2 gap-4">
+        {courses.slice(2, 4).map((course) => (
+            <div key={course.id} className="flex items-center gap-4 p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+              <div className={`w-12 h-12 ${course.color} rounded-lg flex items-center justify-center flex-shrink-0`}>
+                <BookOpen className="w-6 h-6 text-white" />
+              </div>
+              <div className="flex-1">
+                <h4 className="font-semibold text-gray-900">{course.title}</h4>
+                <p className="text-sm text-gray-600">{course.lessons} урока</p>
+                <Progress value={45} className="h-1.5 mt-2" />
+              </div>
+              <Button asChild>
+                <div><ArrowRight/></div>
+              </Button>
+            </div>
+        ))}
       </div>
 
       <Tabs value={activeTab} onValueChange={setActiveTab}>
-        <TabsList>
-          <TabsTrigger value="in-progress">In Progress</TabsTrigger>
-          <TabsTrigger value="completed">Completed</TabsTrigger>
-          <TabsTrigger value="all">All Courses</TabsTrigger>
-        </TabsList>
 
         <TabsContent value="in-progress" className="space-y-6 mt-6">
-          {/* Current Course */}
           <Card className="border-2 border-blue-500">
             <CardHeader>
               <div className="flex items-start justify-between">
@@ -50,26 +61,14 @@ export default function StudentCoursesPage() {
               </div>
               <div className="mt-6">
                 <div className="flex justify-between text-sm mb-2">
-                  <span className="text-gray-600">Course Progress</span>
-                  <span className="font-medium">18 of 32 lessons (56%)</span>
+                  <span className="text-gray-600">18 / 32 уроков выполнено</span>
+                  <span className="font-medium">65%</span>
                 </div>
-                <Progress value={56} className="h-3" />
+                <Progress value={65} className="h-3" />
               </div>
             </CardHeader>
             <CardContent>
-              <div className="flex items-center gap-3 mb-6">
-                <div className="text-sm text-gray-600">
-                  <BookOpen className="w-4 h-4 inline mr-1" />
-                  {enrolledCourse.lessons} total lessons
-                </div>
-                <div className="text-sm text-gray-600">
-                  Duration: {enrolledCourse.duration}
-                </div>
-              </div>
-
-              {/* Lessons List */}
               <div className="space-y-3">
-                <h3 className="font-semibold text-gray-900 mb-4">Recent Lessons</h3>
                 {lessonsWithProgress.map((lesson, index) => (
                   <div
                     key={lesson.id}
@@ -116,7 +115,7 @@ export default function StudentCoursesPage() {
               </div>
 
               <Button className="w-full mt-6" size="lg" asChild>
-                <Link to="/student/lesson/3">Continue Learning</Link>
+                <Link to="/student/lesson/3">Начать <ArrowRight/></Link>
               </Button>
             </CardContent>
           </Card>

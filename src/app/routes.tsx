@@ -22,6 +22,11 @@ import VideoCallPage from './pages/student/VideoCallPage';
 import StudentProfilePage from './pages/student/StudentProfilePage';
 import TeacherLayout from './layouts/TeacherLayout';
 import TeacherDashboard from './pages/teacher/TeacherDashboard';
+import LessonLibraryPage from "./pages/teacher/LessonLibraryPage";
+import TeacherSchedulePage from "./pages/teacher/TeacherSchedulePage";
+import TeacherStudentsPage from "./pages/teacher/TeacherStudentsPage";
+import LessonBuilderPage from "./pages/teacher/LessonBuilderPage";
+import TeacherProfilePage from "./pages/teacher/TeacherProfilePage";
 
 // Public Layout Wrapper
 function PublicLayout({ children }: { children: React.ReactNode }) {
@@ -131,28 +136,25 @@ export const router = createBrowserRouter([
       {
         path: 'lessons',
         element: (
-          <div className="text-center py-12">
-            <h2 className="text-2xl font-bold text-gray-900 mb-2">Lesson Builder</h2>
-            <p className="text-gray-600">Create and edit lessons for your students</p>
-          </div>
+          <LessonBuilderPage/>
         ),
       },
       {
         path: 'schedule',
         element: (
-          <div className="text-center py-12">
-            <h2 className="text-2xl font-bold text-gray-900 mb-2">Teacher Schedule</h2>
-            <p className="text-gray-600">Manage your teaching schedule</p>
-          </div>
+          <TeacherSchedulePage />
         ),
       },
       {
         path: 'students',
         element: (
-          <div className="text-center py-12">
-            <h2 className="text-2xl font-bold text-gray-900 mb-2">My Students</h2>
-            <p className="text-gray-600">View and manage your students</p>
-          </div>
+          <TeacherStudentsPage/>
+        ),
+      },
+      {
+        path: 'profile',
+        element: (
+          <TeacherProfilePage />
         ),
       },
     ],

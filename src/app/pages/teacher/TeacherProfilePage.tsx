@@ -11,7 +11,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '../../components/ui/ta
 import { User, Bell, CreditCard, Shield, Globe } from 'lucide-react';
 import { toast } from 'sonner';
 
-export default function StudentProfilePage() {
+export default function TeacherProfilePage() {
   const { user } = useAuth();
   const [profileData, setProfileData] = useState({
     name: user?.name || '',
@@ -43,7 +43,7 @@ export default function StudentProfilePage() {
                 </Avatar>
                 <h3 className="font-semibold text-gray-900 text-lg">{user?.name}</h3>
                 <p className="text-sm text-gray-600 mb-2">{user?.email}</p>
-                <Badge className="bg-blue-600 text-white border-0 mb-4">Student</Badge>
+                <Badge className="bg-blue-600 text-white border-0 mb-4">Teacher</Badge>
               </div>
             </CardContent>
           </Card>

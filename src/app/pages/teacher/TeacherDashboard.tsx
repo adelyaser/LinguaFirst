@@ -1,7 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../components/ui/card';
 import { Button } from '../../components/ui/button';
 import { Badge } from '../../components/ui/badge';
-import { Calendar, Users, BookOpen, Clock, TrendingUp, Video } from 'lucide-react';
+import {Calendar, Users, BookOpen, Clock, TrendingUp, Video, ArrowRight} from 'lucide-react';
 import { Link } from 'react-router';
 
 export default function TeacherDashboard() {
@@ -9,24 +9,24 @@ export default function TeacherDashboard() {
   const upcomingClasses = [
     {
       id: '1',
-      title: 'B1 Grammar Workshop',
-      time: 'Today at 2:00 PM',
+      title: 'Lesson 19: Daily Routines',
+      time: 'Апр 1 10:00',
       students: 5,
-      type: 'group',
+      type: 'групповые',
     },
     {
       id: '2',
-      title: 'One-on-One: Maria',
-      time: 'Today at 4:30 PM',
-      students: 1,
-      type: 'individual',
+      title: 'Lesson 18: Skin Care',
+      time: 'Апр 3 10:00',
+      students: 5,
+      type: 'групповые',
     },
     {
       id: '3',
-      title: 'Conversation Practice',
-      time: 'Tomorrow at 10:00 AM',
-      students: 6,
-      type: 'group',
+      title: 'One-on-One: Speaking Practice',
+      time: 'Апр 6 10:00',
+      students: 1,
+      type: 'индивидуальные',
     },
   ];
 
@@ -38,68 +38,53 @@ export default function TeacherDashboard() {
 
   return (
     <div className="space-y-8">
-      {/* Welcome Section */}
       <div>
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">Teacher Dashboard 👨‍🏫</h1>
-        <p className="text-gray-600">Manage your lessons and track student progress</p>
+        <h1 className="text-3xl font-bold text-gray-900 mb-2">Добро пожаловать снова!👋</h1>
+        <p className="text-gray-600">Давайте продолжим наше путешествие в изучении английского</p>
       </div>
 
-      {/* Stats Grid */}
       <div className="grid md:grid-cols-4 gap-6">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Students</CardTitle>
+            <CardTitle className="text-sm font-medium">Кол-во студентов</CardTitle>
             <Users className="h-4 w-4 text-gray-600" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">48</div>
-            <p className="text-xs text-gray-600">+5 this month</p>
+            <div className="text-2xl font-bold">5</div>
+            <p className="text-xs text-gray-600">5 активных студентов</p>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Classes Today</CardTitle>
+            <CardTitle className="text-sm font-medium">Проведено уроков</CardTitle>
             <Calendar className="h-4 w-4 text-gray-600" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">6</div>
-            <p className="text-xs text-gray-600">3 group, 3 individual</p>
+            <div className="text-2xl font-bold">45</div>
+            <p className="text-xs text-gray-600">Всего 45 уроков</p>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Hours This Week</CardTitle>
+            <CardTitle className="text-sm font-medium">Проведено часов</CardTitle>
             <Clock className="h-4 w-4 text-gray-600" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">18.5h</div>
-            <p className="text-xs text-gray-600">+2.5h from last week</p>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Avg. Rating</CardTitle>
-            <TrendingUp className="h-4 w-4 text-gray-600" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">4.9</div>
-            <p className="text-xs text-gray-600">Based on 124 reviews</p>
+            <div className="text-2xl font-bold">24,5ч</div>
+            <p className="text-xs text-gray-600">01.02.2026 - 28.02.2026</p>
           </CardContent>
         </Card>
       </div>
-
-      {/* Upcoming Classes */}
       <Card>
         <CardHeader className="flex flex-row items-center justify-between">
           <div>
-            <CardTitle>Upcoming Classes</CardTitle>
-            <CardDescription>Your schedule for today and tomorrow</CardDescription>
+            <CardTitle>Предстоящие занятия</CardTitle>
+            <CardDescription>Ваши занятия на этой неделе</CardDescription>
           </div>
           <Button variant="outline" size="sm" asChild>
-            <Link to="/teacher/schedule">View All</Link>
+            <Link to="/teacher/schedule">Увидеть все <Calendar /></Link>
           </Button>
         </CardHeader>
         <CardContent>
@@ -121,90 +106,19 @@ export default function TeacherDashboard() {
                         variant={classItem.type === 'individual' ? 'default' : 'secondary'}
                         className="text-xs"
                       >
-                        {classItem.students} {classItem.students === 1 ? 'student' : 'students'}
+                        {classItem.type}
                       </Badge>
                     </div>
                   </div>
                 </div>
                 <div className="flex gap-2">
-                  <Button variant="outline" size="sm">
-                    Prepare
-                  </Button>
-                  <Button size="sm">Start Class</Button>
+                  <Button size="sm"><ArrowRight/></Button>
                 </div>
               </div>
             ))}
           </div>
         </CardContent>
       </Card>
-
-      <div className="grid lg:grid-cols-2 gap-6">
-        {/* Recent Students */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Recent Students</CardTitle>
-            <CardDescription>Students you've taught recently</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              {recentStudents.map((student, index) => (
-                <div key={index} className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
-                      <span className="text-sm font-semibold text-blue-700">
-                        {student.name.split(' ').map(n => n[0]).join('')}
-                      </span>
-                    </div>
-                    <div>
-                      <div className="font-medium text-gray-900">{student.name}</div>
-                      <div className="text-sm text-gray-600">
-                        {student.level} • {student.lessons} lessons
-                      </div>
-                    </div>
-                  </div>
-                  <div className="text-right">
-                    <div className="text-sm font-medium text-gray-900">{student.progress}%</div>
-                    <div className="text-xs text-gray-600">Progress</div>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <Button variant="outline" className="w-full mt-4" asChild>
-              <Link to="/teacher/students">View All Students</Link>
-            </Button>
-          </CardContent>
-        </Card>
-
-        {/* Quick Actions */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Quick Actions</CardTitle>
-            <CardDescription>Common tasks and tools</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-3">
-            <Button className="w-full justify-start" variant="outline" asChild>
-              <Link to="/teacher/lessons">
-                <BookOpen className="w-4 h-4 mr-2" />
-                Create New Lesson
-              </Link>
-            </Button>
-            <Button className="w-full justify-start" variant="outline" asChild>
-              <Link to="/teacher/schedule">
-                <Calendar className="w-4 h-4 mr-2" />
-                Schedule Class
-              </Link>
-            </Button>
-            <Button className="w-full justify-start" variant="outline">
-              <Users className="w-4 h-4 mr-2" />
-              Message Students
-            </Button>
-            <Button className="w-full justify-start" variant="outline">
-              <TrendingUp className="w-4 h-4 mr-2" />
-              View Analytics
-            </Button>
-          </CardContent>
-        </Card>
-      </div>
     </div>
   );
 }

@@ -16,10 +16,11 @@ export default function TeacherLayout() {
   }, [isAuthenticated, user, navigate]);
 
   const navLinks = [
-    { to: '/teacher/dashboard', label: 'Dashboard', icon: LayoutDashboard },
-    { to: '/teacher/lessons', label: 'Lesson Builder', icon: BookOpen },
-    { to: '/teacher/schedule', label: 'Schedule', icon: Calendar },
-    { to: '/teacher/students', label: 'Students', icon: Users },
+    { to: '/teacher/dashboard', label: 'Главная', icon: LayoutDashboard },
+    { to: '/teacher/students', label: 'Ученики', icon: GraduationCap },
+    { to: '/teacher/lessons', label: 'Конструктор', icon: BookOpen },
+    { to: '/teacher/schedule', label: 'Расписание', icon: Calendar },
+    { to: '/teacher/profile', label: 'Профиль', icon: Users },
   ];
 
   const handleLogout = () => {
@@ -41,7 +42,7 @@ export default function TeacherLayout() {
               <div className="w-10 h-10 bg-gradient-to-br from-purple-600 to-blue-600 rounded-lg flex items-center justify-center">
                 <GraduationCap className="w-6 h-6 text-white" />
               </div>
-              <span className="text-xl font-semibold text-gray-900">EnglishPro Teacher</span>
+              <span className="text-xl font-semibold text-gray-900">LinguaFirst</span>
             </Link>
 
             <div className="flex items-center gap-4">
@@ -51,7 +52,7 @@ export default function TeacherLayout() {
               </div>
               <Button variant="ghost" size="sm" onClick={handleLogout}>
                 <LogOut className="w-4 h-4 mr-2" />
-                Logout
+                Выйти
               </Button>
             </div>
           </div>

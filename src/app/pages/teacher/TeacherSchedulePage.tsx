@@ -6,7 +6,7 @@ import { Badge } from '../../components/ui/badge';
 import {Calendar as CalendarIcon, Clock, Video, Plus, ArrowRight, ArrowLeft} from 'lucide-react';
 import { Link } from 'react-router';
 
-export default function StudentSchedulePage() {
+export default function TeacherSchedulePage() {
   const [selectedDate, setSelectedDate] = useState(new Date());
 
   // Mock calendar data

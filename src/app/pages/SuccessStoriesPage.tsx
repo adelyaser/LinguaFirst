@@ -3,76 +3,67 @@ import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card'
 import { Badge } from '../components/ui/badge';
 import { Button } from '../components/ui/button';
 import { Link } from 'react-router';
-import { Trophy, TrendingUp, MapPin, GraduationCap, Briefcase } from 'lucide-react';
+import {Trophy, TrendingUp, MapPin, GraduationCap, Briefcase, ArrowRight} from 'lucide-react';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
 
 export default function SuccessStoriesPage() {
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-green-600 to-blue-600 text-white py-16">
+      <section className="bg-gradient-to-br from-purple-600 to-blue-600 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
-            <h1 className="text-5xl font-bold mb-6">Success Stories</h1>
+            <h1 className="text-5xl font-bold mb-6">Наши ученики</h1>
             <p className="text-xl opacity-90">
-              Real students, real results. See how EnglishPro helped thousands achieve their dreams of studying abroad, landing dream jobs, and passing IELTS with top scores.
+              Настоящие студенты, настоящие результаты. Узнайте, как LinguaFirst помог тысячам людей осуществить мечту об обучении за границей, найти работу своей мечты и сдать IELTS с максимальными баллами.
             </p>
           </div>
         </div>
       </section>
-
-      {/* Stats Banner */}
       <section className="py-12 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-4 gap-8 text-center">
             <div>
               <div className="text-4xl font-bold text-green-600 mb-2">8.0+</div>
-              <div className="text-gray-600">Average IELTS Score</div>
+              <div className="text-gray-600">Средний балл по IELTS</div>
             </div>
             <div>
               <div className="text-4xl font-bold text-blue-600 mb-2">500+</div>
-              <div className="text-gray-600">University Admissions</div>
+              <div className="text-gray-600">Поступлений в университеты</div>
             </div>
             <div>
               <div className="text-4xl font-bold text-purple-600 mb-2">95%</div>
-              <div className="text-gray-600">Pass Rate</div>
+              <div className="text-gray-600">Процент поступивших</div>
             </div>
             <div>
               <div className="text-4xl font-bold text-orange-600 mb-2">150+</div>
-              <div className="text-gray-600">Countries Represented</div>
+              <div className="text-gray-600">Стран в программе</div>
             </div>
           </div>
         </div>
       </section>
-
-      {/* Featured Success Story */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl overflow-hidden">
             <div className="grid md:grid-cols-2 gap-8 p-8 md:p-12">
               <div>
-                <Badge className="bg-yellow-500 text-white border-0 mb-4">
-                  <Trophy className="w-3 h-3 mr-1" />
-                  Featured Story
-                </Badge>
                 <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                  From B2 to Oxford PhD Student
+                  От уровня B2 до аспиранта Оксфордского университета
                 </h2>
                 <p className="text-lg text-gray-700 mb-6">
-                  "I never thought I could achieve IELTS 8.5, but EnglishPro's personalized approach and expert teachers made it possible. The speaking practice sessions were invaluable!"
+                  «Я никогда не думала, что смогу набрать 8,5 баллов по IELTS, но индивидуальный подход LinguaFirst и опытные преподаватели сделали это возможным. Занятия по разговорной практике оказались просто неоценимыми!»
                 </p>
                 <div className="space-y-3">
                   <div className="flex items-center gap-2 text-gray-700">
                     <GraduationCap className="w-5 h-5 text-blue-600" />
-                    <span className="font-semibold">Carlos Mendez</span>
+                    <span className="font-semibold">Акбота Кенжебекова</span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600">
                     <MapPin className="w-5 h-5 text-gray-400" />
-                    <span>Colombia → Oxford University</span>
+                    <span>Алматы → Oxford University</span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600">
                     <TrendingUp className="w-5 h-5 text-gray-400" />
-                    <span>B2 → C1 in 5 months</span>
+                    <span>B2 → C1 за 5 месяцев</span>
                   </div>
                 </div>
               </div>
@@ -87,11 +78,9 @@ export default function SuccessStoriesPage() {
           </div>
         </div>
       </section>
-
-      {/* Success Stories Grid */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">More Success Stories</h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">Наши успешные кейсы</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {successStories.map((story, index) => (
               <Card key={story.id} className="hover:shadow-lg transition-shadow">
@@ -131,12 +120,6 @@ export default function SuccessStoriesPage() {
                         <span className="text-gray-700">{story.university}</span>
                       </div>
                     )}
-                    {story.promotion && (
-                      <div className="flex items-start gap-2 text-sm mt-2">
-                        <Briefcase className="w-4 h-4 text-purple-600 mt-0.5 flex-shrink-0" />
-                        <span className="text-gray-700">{story.promotion}</span>
-                      </div>
-                    )}
                     {story.destination && (
                       <div className="flex items-start gap-2 text-sm mt-2">
                         <MapPin className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
@@ -150,21 +133,19 @@ export default function SuccessStoriesPage() {
           </div>
         </div>
       </section>
-
-      {/* CTA Section */}
       <section className="py-16 bg-gradient-to-br from-blue-600 to-purple-600 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <Trophy className="w-16 h-16 mx-auto mb-6" />
-          <h2 className="text-4xl font-bold mb-6">Your Success Story Starts Here</h2>
+          <h2 className="text-4xl font-bold mb-6">Начать обучение</h2>
           <p className="text-xl mb-8 opacity-90">
-            Join thousands of students who have transformed their lives with English fluency
+            Присоединяйся к 50.000 ученикам в изучении английского языка
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" variant="secondary" asChild>
-              <Link to="/signup">Start Learning Now</Link>
+              <Link to="/signup">Записаться <ArrowRight/></Link>
             </Button>
             <Button size="lg" variant="outline" className="bg-transparent border-white text-white hover:bg-white/10" asChild>
-              <Link to="/level-test">Take Level Test</Link>
+              <Link to="/level-test">Узнать уровень <ArrowRight/></Link>
             </Button>
           </div>
         </div>

@@ -4,22 +4,19 @@ import { Button } from '../../components/ui/button';
 import { Badge } from '../../components/ui/badge';
 import { Progress } from '../../components/ui/progress';
 import { Link } from 'react-router';
-import { Clock, BookOpen, Trophy, Flame, Calendar, Video } from 'lucide-react';
+import {Clock, BookOpen, Trophy, Flame, Calendar, Video, ArrowLeft, ArrowRight} from 'lucide-react';
 
 export default function StudentDashboard() {
   return (
     <div className="space-y-8">
-      {/* Welcome Section */}
       <div>
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">Welcome back! 👋</h1>
-        <p className="text-gray-600">Continue your English learning journey</p>
+        <h1 className="text-3xl font-bold text-gray-900 mb-2">Добро пожаловать снова!👋</h1>
+        <p className="text-gray-600">Давайте продолжим наше путешествие в изучении английского</p>
       </div>
-
-      {/* Stats Grid */}
       <div className="grid md:grid-cols-4 gap-6">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Current Level</CardTitle>
+            <CardTitle className="text-sm font-medium">Текущий уровень</CardTitle>
             <Trophy className="h-4 w-4 text-gray-600" />
           </CardHeader>
           <CardContent>
@@ -30,49 +27,46 @@ export default function StudentDashboard() {
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Study Streak</CardTitle>
+            <CardTitle className="text-sm font-medium">Огонек</CardTitle>
             <Flame className="h-4 w-4 text-orange-500" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{studentProgress.studyStreak} days</div>
-            <p className="text-xs text-gray-600">Keep it up!</p>
+            <div className="text-2xl font-bold">{studentProgress.studyStreak} дней</div>
+            <p className="text-xs text-gray-600">Так держать!</p>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Lessons Completed</CardTitle>
+            <CardTitle className="text-sm font-medium">Пройдено уроков</CardTitle>
             <BookOpen className="h-4 w-4 text-gray-600" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{studentProgress.lessonsCompleted}</div>
-            <p className="text-xs text-gray-600">of {studentProgress.totalLessons} total</p>
+            <div className="text-2xl font-bold">{studentProgress.lessonsCompleted} уроков</div>
+            <p className="text-xs text-gray-600">из {studentProgress.totalLessons}</p>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Hours Studied</CardTitle>
+            <CardTitle className="text-sm font-medium">Проведено часов</CardTitle>
             <Clock className="h-4 w-4 text-gray-600" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{studentProgress.hoursStudied}h</div>
-            <p className="text-xs text-gray-600">This month</p>
+            <p className="text-xs text-gray-600">01.02.2026 - 28.02.2026</p>
           </CardContent>
         </Card>
       </div>
-
-      {/* Overall Progress */}
       <Card>
         <CardHeader>
-          <CardTitle>Overall Progress</CardTitle>
-          <CardDescription>Your progress in the current course</CardDescription>
+          <CardTitle>Общий прогресс</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="space-y-2">
             <div className="flex justify-between text-sm">
               <span className="text-gray-600">
-                {studentProgress.lessonsCompleted} of {studentProgress.totalLessons} lessons completed
+                {studentProgress.lessonsCompleted} / {studentProgress.totalLessons} уроков выполнено
               </span>
               <span className="font-medium">{studentProgress.overallProgress}%</span>
             </div>
@@ -80,18 +74,16 @@ export default function StudentDashboard() {
           </div>
         </CardContent>
       </Card>
-
-      {/* Upcoming Lessons */}
       <Card>
         <CardHeader className="flex flex-row items-center justify-between">
           <div>
-            <CardTitle>Upcoming Lessons</CardTitle>
-            <CardDescription>Your scheduled classes this week</CardDescription>
+            <CardTitle>Предстоящие занятия</CardTitle>
+            <CardDescription>Ваши занятия на этой неделе</CardDescription>
           </div>
           <Button variant="outline" size="sm" asChild>
             <Link to="/student/schedule">
               <Calendar className="w-4 h-4 mr-2" />
-              View All
+              Увидеть все
             </Link>
           </Button>
         </CardHeader>
@@ -122,19 +114,17 @@ export default function StudentDashboard() {
                   </div>
                 </div>
                 <Button asChild>
-                  <Link to={lesson.link}>Join</Link>
+                  <div><ArrowRight/></div>
                 </Button>
               </div>
             ))}
           </div>
         </CardContent>
       </Card>
-
-      {/* Continue Learning */}
       <Card>
         <CardHeader>
-          <CardTitle>Continue Learning</CardTitle>
-          <CardDescription>Pick up where you left off</CardDescription>
+          <CardTitle>Продолжите занятия</CardTitle>
+          <CardDescription>Продолжите там, где остановились</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="grid md:grid-cols-2 gap-4">
@@ -145,11 +135,11 @@ export default function StudentDashboard() {
                 </div>
                 <div className="flex-1">
                   <h4 className="font-semibold text-gray-900">{course.title}</h4>
-                  <p className="text-sm text-gray-600">{course.lessons} lessons</p>
+                  <p className="text-sm text-gray-600">{course.lessons} урока</p>
                   <Progress value={45} className="h-1.5 mt-2" />
                 </div>
-                <Button variant="ghost" size="sm" asChild>
-                  <Link to="/student/courses">Continue</Link>
+                <Button asChild>
+                  <div><ArrowRight/></div>
                 </Button>
               </div>
             ))}

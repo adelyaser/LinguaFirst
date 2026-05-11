@@ -16,10 +16,10 @@ export default function StudentLayout() {
   }, [isAuthenticated, user, navigate]);
 
   const navLinks = [
-    { to: '/student/dashboard', label: 'Dashboard', icon: LayoutDashboard },
-    { to: '/student/courses', label: 'My Courses', icon: BookOpen },
-    { to: '/student/schedule', label: 'Schedule', icon: Calendar },
-    { to: '/student/profile', label: 'Profile', icon: User },
+    { to: '/student/dashboard', label: 'Главная', icon: LayoutDashboard },
+    { to: '/student/courses', label: 'Мои курсы', icon: BookOpen },
+    { to: '/student/schedule', label: 'Расписание', icon: Calendar },
+    { to: '/student/profile', label: 'Профиль', icon: User },
   ];
 
   const handleLogout = () => {
@@ -33,7 +33,6 @@ export default function StudentLayout() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Top Navigation */}
       <nav className="bg-white border-b border-gray-200 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
@@ -41,7 +40,7 @@ export default function StudentLayout() {
               <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
                 <GraduationCap className="w-6 h-6 text-white" />
               </div>
-              <span className="text-xl font-semibold text-gray-900">EnglishPro</span>
+              <span className="text-xl font-semibold text-gray-900">LinguaFirst</span>
             </Link>
 
             <div className="flex items-center gap-4">
@@ -51,7 +50,7 @@ export default function StudentLayout() {
               </div>
               <Button variant="ghost" size="sm" onClick={handleLogout}>
                 <LogOut className="w-4 h-4 mr-2" />
-                Logout
+                Выйти
               </Button>
             </div>
           </div>

@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../co
 import { Button } from '../components/ui/button';
 import { Badge } from '../components/ui/badge';
 import { Link } from 'react-router';
-import { Star, Users, GraduationCap, Globe } from 'lucide-react';
+import {Star, Users, GraduationCap, Globe, ArrowRight} from 'lucide-react';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
 
 export default function TeachersPage() {
@@ -71,7 +71,7 @@ export default function TeachersPage() {
                 </CardContent>
                 <div className="px-6 pb-6">
                   <Button className="w-full" asChild>
-                    <Link to="/signup">Book a Lesson</Link>
+                    <Link to="/signup">Записаться на урок <ArrowRight/></Link>
                   </Button>
                 </div>
               </Card>
@@ -81,13 +81,12 @@ export default function TeachersPage() {
       </section>
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <GraduationCap className="w-16 h-16 text-blue-600 mx-auto mb-6" />
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">Want to Teach with Us?</h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">Сомневаешься в выборе?</h2>
           <p className="text-lg text-gray-600 mb-8">
-            Join our community of passionate educators and help students around the world master English
+            Пройди тест на определение уровня и мы подберм лучшее решенеие
           </p>
-          <Button size="lg" variant="outline" asChild>
-            <Link to="/signup?role=teacher">Apply as Teacher</Link>
+          <Button size="lg" asChild>
+            <Link to="/level-test">Пройти тест <ArrowRight/></Link>
           </Button>
         </div>
       </section>
