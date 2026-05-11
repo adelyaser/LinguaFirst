@@ -5,7 +5,7 @@ import { Button } from '../components/ui/button';
 import { Progress } from '../components/ui/progress';
 import { Badge } from '../components/ui/badge';
 import { Link } from 'react-router';
-import { CheckCircle2, XCircle, Trophy } from 'lucide-react';
+import { CheckCircle2, XCircle, Trophy, ArrowRight } from 'lucide-react';
 
 export default function LevelTestPage() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -62,49 +62,42 @@ export default function LevelTestPage() {
               <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center">
                 <Trophy className="w-10 h-10 text-white" />
               </div>
-              <CardTitle className="text-3xl mb-2">Test Complete!</CardTitle>
-              <CardDescription className="text-lg">Here are your results</CardDescription>
+              <CardTitle className="text-3xl mb-2">Тест завершен!</CardTitle>
+              <CardDescription className="text-lg">Ваш результат:</CardDescription>
             </CardHeader>
             <CardContent className="space-y-6 pt-8">
               <div>
                 <div className="text-6xl font-bold text-gray-900 mb-2">{result.level}</div>
                 <div className="text-xl text-gray-600 mb-4">{result.desc}</div>
                 <Badge className={`${result.color} text-white border-0 text-lg px-6 py-2`}>
-                  Your English Level
+                  Ваш уровень английского
                 </Badge>
               </div>
-
               <div className="bg-gray-50 rounded-lg p-6 space-y-2">
-                <div className="text-sm text-gray-600">Score</div>
+                <div className="text-sm text-gray-600">Итог</div>
                 <div className="text-3xl font-bold text-gray-900">
                   {correctCount} / {levelTestQuestions.length}
                 </div>
                 <Progress value={(correctCount / levelTestQuestions.length) * 100} className="h-2" />
               </div>
-
               <div className="border-t border-gray-200 pt-6 space-y-4">
-                <h3 className="font-semibold text-gray-900">Recommended Courses</h3>
+                <h3 className="font-semibold text-gray-900">Рекомендуемые программы</h3>
                 <p className="text-sm text-gray-600">
-                  Based on your {result.level} level, we recommend starting with our {result.desc} course to build a strong foundation and progress to the next level.
+                  Учитывая ваш уровень {result.level} мы рекомендуем начать с курса для {result.desc}, чтобы заложить прочную основу и перейти на следующий уровень.
                 </p>
               </div>
-
               <div className="flex flex-col sm:flex-row gap-3 pt-4">
                 <Button size="lg" className="flex-1" asChild>
-                  <Link to="/courses">View Courses</Link>
-                </Button>
-                <Button size="lg" variant="outline" className="flex-1" asChild>
-                  <Link to="/signup">Start Learning</Link>
+                  <Link to="/courses">Список программ <ArrowRight/></Link>
                 </Button>
               </div>
-
               <Button variant="ghost" onClick={() => {
                 setCurrentQuestion(0);
                 setAnswers([]);
                 setShowResults(false);
                 setSelectedAnswer(null);
               }}>
-                Retake Test
+                Пройти тест заново
               </Button>
             </CardContent>
           </Card>
@@ -186,14 +179,14 @@ export default function LevelTestPage() {
               }}
               disabled={currentQuestion === 0}
             >
-              Previous
+              Предыдущий
             </Button>
             <Button
               onClick={handleNext}
               disabled={selectedAnswer === null}
               size="lg"
             >
-              {currentQuestion === levelTestQuestions.length - 1 ? 'Finish Test' : 'Next Question'}
+              {currentQuestion === levelTestQuestions.length - 1 ? 'Закончить тест' : 'Следующий'}
             </Button>
           </div>
         </div>
