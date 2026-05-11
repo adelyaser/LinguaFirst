@@ -6,7 +6,6 @@ import { ImageWithFallback } from '../components/figma/ImageWithFallback';
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-white">
-      {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 py-20 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -112,8 +111,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-      {/* Features */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
