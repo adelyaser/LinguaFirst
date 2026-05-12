@@ -19,7 +19,12 @@ export function PublicNav() {
     { to: '/contact', label: 'Контакты' },
   ];
 
-  const dashboardLink = user?.role === 'teacher' ? '/teacher/dashboard' : '/student/dashboard';
+  const dashboardLink =
+    user?.role === 'admin'
+      ? '/admin/assignments'
+      : user?.role === 'teacher'
+        ? '/teacher/dashboard'
+        : '/student/dashboard';
 
   return (
     <nav className="bg-white border-b border-gray-200 sticky top-0 z-50">

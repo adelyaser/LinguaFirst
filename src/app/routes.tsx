@@ -22,11 +22,12 @@ import VideoCallPage from './pages/student/VideoCallPage';
 import StudentProfilePage from './pages/student/StudentProfilePage';
 import TeacherLayout from './layouts/TeacherLayout';
 import TeacherDashboard from './pages/teacher/TeacherDashboard';
-import LessonLibraryPage from "./pages/teacher/LessonLibraryPage";
 import TeacherSchedulePage from "./pages/teacher/TeacherSchedulePage";
 import TeacherStudentsPage from "./pages/teacher/TeacherStudentsPage";
 import LessonBuilderPage from "./pages/teacher/LessonBuilderPage";
 import TeacherProfilePage from "./pages/teacher/TeacherProfilePage";
+import AdminLayout from './layouts/AdminLayout';
+import AdminAssignmentsPage from './pages/admin/AdminAssignmentsPage';
 
 // Public Layout Wrapper
 function PublicLayout({ children }: { children: React.ReactNode }) {
@@ -156,6 +157,16 @@ export const router = createBrowserRouter([
         element: (
           <TeacherProfilePage />
         ),
+      },
+    ],
+  },
+  {
+    path: '/admin',
+    element: <AdminLayout />,
+    children: [
+      {
+        path: 'assignments',
+        element: <AdminAssignmentsPage />,
       },
     ],
   },

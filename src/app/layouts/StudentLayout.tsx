@@ -5,15 +5,15 @@ import { GraduationCap, LayoutDashboard, BookOpen, Calendar, LogOut, User } from
 import { useEffect } from 'react';
 
 export default function StudentLayout() {
-  const { user, logout, isAuthenticated } = useAuth();
+  const { user, logout, isAuthenticated, loading } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!isAuthenticated || user?.role !== 'student') {
+    if (!loading && (!isAuthenticated || user?.role !== 'student')) {
       navigate('/login');
     }
-  }, [isAuthenticated, user, navigate]);
+  }, [isAuthenticated, loading, user, navigate]);
 
   const navLinks = [
     { to: '/student/dashboard', label: 'Главная', icon: LayoutDashboard },
@@ -27,7 +27,7 @@ export default function StudentLayout() {
     navigate('/');
   };
 
-  if (!isAuthenticated || user?.role !== 'student') {
+  if (loading || !isAuthenticated || user?.role !== 'student') {
     return null;
   }
 

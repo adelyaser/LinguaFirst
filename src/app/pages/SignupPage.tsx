@@ -42,7 +42,7 @@ export default function SignupPage() {
     try {
       await signup(formData.email, formData.password, formData.name, formData.role as UserRole);
       toast.success('Аккаунт создан успешно!');
-      navigate(formData.role === 'teacher' ? '/teacher/dashboard' : '/student/dashboard');
+      navigate(formData.role === 'admin' ? '/admin/assignments' : formData.role === 'teacher' ? '/teacher/dashboard' : '/student/dashboard');
     } catch (error) {
       toast.error('Аккаунт не создан. Произошла ошибка.');
     } finally {
@@ -97,6 +97,16 @@ export default function SignupPage() {
                       <div>
                         <div className="font-medium">Обучать</div>
                         <div className="text-xs text-gray-600">Я учитель</div>
+                      </div>
+                    </Label>
+                  </div>
+                  <div className="flex items-center space-x-2 border rounded-lg p-4 cursor-pointer hover:bg-gray-50">
+                    <RadioGroupItem value="admin" id="admin" />
+                    <Label htmlFor="admin" className="flex items-center gap-2 cursor-pointer flex-1">
+                      <UserCog className="w-5 h-5 text-slate-700" />
+                      <div>
+                        <div className="font-medium">Администрировать</div>
+                        <div className="text-xs text-gray-600">Я админ</div>
                       </div>
                     </Label>
                   </div>

@@ -20,10 +20,9 @@ export default function LoginPage() {
     setLoading(true);
 
     try {
-      const role = email.includes('teacher') ? 'teacher' : 'student';
-      await login(email, password, role);
+      const user = await login(email, password);
       toast.success('Login successful!');
-      navigate(role === 'teacher' ? '/teacher/dashboard' : '/student/dashboard');
+      navigate(user.role === 'admin' ? '/admin/assignments' : user.role === 'teacher' ? '/teacher/dashboard' : '/student/dashboard');
     } catch (error) {
       toast.error('Не удалось войти. Попробуйте снова!');
     } finally {
@@ -89,7 +88,8 @@ export default function LoginPage() {
               <div className="text-xs text-gray-600 space-y-1">
                 <p>Ученик: student@linguafirst.com</p>
                 <p>Учитель: teacher@linguafirst.com</p>
-                <p>Пароль: любой</p>
+                <p>Админ: admin@linguafirst.com</p>
+                <p>Пароль: password</p>
               </div>
             </div>
           </CardContent>

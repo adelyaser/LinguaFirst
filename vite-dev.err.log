@@ -1,0 +1,12 @@
+▲ [WARNING] Duplicate key "sql.js" in object literal [duplicate-object-key]
+
+    package.json:66:4:
+      66 │     "sql.js": "^1.14.1",
+         ╵     ~~~~~~~~
+
+  The original key "sql.js" is here:
+
+    package.json:65:4:
+      65 │     "sql.js": "^1.13.0",
+         ╵     ~~~~~~~~
+
