@@ -1,4 +1,4 @@
-import { studentProgress, upcomingLessons, courses } from '../../data/mockData';
+import { useAppData } from '../../context/AppDataContext';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../components/ui/card';
 import { Button } from '../../components/ui/button';
 import { Badge } from '../../components/ui/badge';
@@ -7,6 +7,17 @@ import { Link } from 'react-router';
 import {Clock, BookOpen, Trophy, Flame, Calendar, Video, ArrowLeft, ArrowRight} from 'lucide-react';
 
 export default function StudentDashboard() {
+  const { courses, schedules, progress } = useAppData();
+  const studentProgress = progress || {
+    currentLevel: 'A1',
+    overallProgress: 0,
+    lessonsCompleted: 0,
+    totalLessons: 24,
+    studyStreak: 0,
+    hoursStudied: 0,
+  };
+  const upcomingLessons = schedules;
+
   return (
     <div className="space-y-8">
       <div>

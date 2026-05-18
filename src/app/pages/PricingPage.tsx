@@ -1,4 +1,4 @@
-import { pricingPlans } from '../data/mockData';
+import { useAppData } from '../context/AppDataContext';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '../components/ui/card';
 import { Button } from '../components/ui/button';
 import { Badge } from '../components/ui/badge';
@@ -6,6 +6,8 @@ import { Link } from 'react-router';
 import {Check, X, Sparkles, ArrowRight} from 'lucide-react';
 
 export default function PricingPage() {
+  const { pricingPlans } = useAppData();
+
   return (
     <div className="min-h-screen bg-gray-50">
       <section className="bg-gradient-to-br from-purple-600 to-blue-600 text-white py-16">

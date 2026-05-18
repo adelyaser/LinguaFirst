@@ -1,4 +1,4 @@
-import { successStories } from '../data/mockData';
+import { useAppData } from '../context/AppDataContext';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
 import { Button } from '../components/ui/button';
@@ -7,6 +7,8 @@ import {Trophy, TrendingUp, MapPin, GraduationCap, Briefcase, ArrowRight} from '
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
 
 export default function SuccessStoriesPage() {
+  const { successStories } = useAppData();
+
   return (
     <div className="min-h-screen bg-gray-50">
       <section className="bg-gradient-to-br from-purple-600 to-blue-600 text-white py-16">

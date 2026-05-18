@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { levelTestQuestions } from '../data/mockData';
+import { useAppData } from '../context/AppDataContext';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
 import { Button } from '../components/ui/button';
 import { Progress } from '../components/ui/progress';
@@ -8,6 +8,7 @@ import { Link } from 'react-router';
 import { CheckCircle2, XCircle, Trophy, ArrowRight } from 'lucide-react';
 
 export default function LevelTestPage() {
+  const { levelTestQuestions, saveLevelTestResult } = useAppData();
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<number[]>([]);
   const [showResults, setShowResults] = useState(false);
@@ -26,6 +27,14 @@ export default function LevelTestPage() {
         setCurrentQuestion(currentQuestion + 1);
         setSelectedAnswer(null);
       } else {
+        const correctCount = newAnswers.filter((answer, index) => answer === levelTestQuestions[index].correct).length;
+        const score = Math.round((correctCount / levelTestQuestions.length) * 100);
+        const level =
+          score >= 90 ? 'C1' :
+          score >= 70 ? 'B2' :
+          score >= 50 ? 'B1' :
+          score >= 30 ? 'A2' : 'A1';
+        saveLevelTestResult(level, score).catch(() => {});
         setShowResults(true);
       }
     }
@@ -47,6 +56,10 @@ export default function LevelTestPage() {
     if (percentage >= 30) return { level: 'A2', color: 'bg-blue-500', desc: 'Elementary' };
     return { level: 'A1', color: 'bg-green-500', desc: 'Beginner' };
   };
+
+  if (levelTestQuestions.length === 0) {
+    return <div className="min-h-screen bg-gray-50 py-16 text-center text-gray-600">Loading test...</div>;
+  }
 
   const progress = ((currentQuestion + 1) / levelTestQuestions.length) * 100;
 

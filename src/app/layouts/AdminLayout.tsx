@@ -1,6 +1,6 @@
 import { Link, Outlet, useLocation, useNavigate } from 'react-router';
 import { useEffect } from 'react';
-import { GraduationCap, LayoutDashboard, LogOut, UsersRound } from 'lucide-react';
+import { GraduationCap, LogOut, UserCog, UsersRound } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { useAuth } from '../context/AuthContext';
 
@@ -26,6 +26,7 @@ export default function AdminLayout() {
 
   const navLinks = [
     { to: '/admin/assignments', label: 'Назначения', icon: UsersRound },
+    { to: '/admin/teachers', label: 'Учителя', icon: UserCog },
   ];
 
   return (

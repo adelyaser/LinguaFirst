@@ -5,15 +5,16 @@ import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { Label } from '../components/ui/label';
 import { Badge } from '../components/ui/badge';
-import { pricingPlans } from '../data/mockData';
+import { useAppData } from '../context/AppDataContext';
 import { CreditCard, Lock } from 'lucide-react';
 import { toast } from 'sonner';
 
 export default function PaymentPage() {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
+  const { pricingPlans } = useAppData();
   const planId = searchParams.get('plan') || 'standard';
-  const plan = pricingPlans.find((p) => p.id === planId) || pricingPlans[1];
+  const plan = pricingPlans.find((p) => p.id === planId) || pricingPlans[1] || pricingPlans[0];
 
   const [formData, setFormData] = useState({
     cardNumber: '',
@@ -36,6 +37,7 @@ export default function PaymentPage() {
   };
 
   return (
+    !plan ? null :
     <div className="min-h-screen bg-gray-50 py-12">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-8">

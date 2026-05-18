@@ -15,6 +15,7 @@ import {
   ArrowRight
 } from 'lucide-react';
 import { toast } from 'sonner';
+import { useAppData } from '../../context/AppDataContext';
 
 interface ContentBlock {
   id: string;
@@ -89,6 +90,7 @@ function DraggableBlock({ block, index, moveBlock, removeBlock, editBlock }: any
 }
 
 export default function LessonBuilderPage() {
+  const { createLesson } = useAppData();
   const [lessonTitle, setLessonTitle] = useState('');
   const [lessonLevel, setLessonLevel] = useState('B1');
   const [lessonDuration, setLessonDuration] = useState('60');
@@ -136,7 +138,7 @@ export default function LessonBuilderPage() {
     }
   };
 
-  const saveLesson = () => {
+  const saveLesson = async () => {
     if (!lessonTitle) {
       toast.error('Please add a lesson title');
       return;
@@ -145,7 +147,28 @@ export default function LessonBuilderPage() {
       toast.error('Please add at least one content block');
       return;
     }
-    toast.success('Lesson saved successfully!');
+    try {
+      await createLesson({
+        title: lessonTitle,
+        courseId: lessonLevel.toLowerCase(),
+        duration: Number(lessonDuration),
+        description: `${lessonLevel} lesson`,
+        exercises: contentBlocks
+          .filter((block) => block.type === 'quiz')
+          .map((block) => ({
+            type: 'multiple-choice',
+            question: block.content.question,
+            options: block.content.options,
+            correct: block.content.correct,
+          })),
+        videoUrl: contentBlocks.find((block) => block.type === 'video')?.content.url || '',
+      });
+      toast.success('Lesson saved successfully!');
+      setLessonTitle('');
+      setContentBlocks([]);
+    } catch {
+      toast.error('Failed to save lesson');
+    }
   };
 
   const saveAsTemplate = () => {

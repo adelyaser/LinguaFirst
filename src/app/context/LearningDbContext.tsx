@@ -1,9 +1,10 @@
 import { createContext, ReactNode, useContext, useCallback, useEffect, useMemo, useState } from 'react';
-import { getAuthToken } from './AuthContext';
+import { getAuthToken, useAuth } from './AuthContext';
 
 export interface DbTeacher {
   id: string;
   name: string;
+  level: string;
   specialty: string;
   email: string;
 }
@@ -26,6 +27,7 @@ interface LearningDbContextType extends LearningDbState {
   loading: boolean;
   error: string | null;
   assignStudentToTeacher: (studentId: string, teacherId: string | null) => Promise<void>;
+  deleteTeacher: (teacherId: string) => Promise<void>;
   getStudentsForTeacher: (teacherId: string) => DbStudent[];
 }
 
@@ -39,6 +41,7 @@ function authHeaders() {
 }
 
 export function LearningDbProvider({ children }: { children: ReactNode }) {
+  const { user, loading: authLoading } = useAuth();
   const [db, setDb] = useState<LearningDbState>({ teachers: [], students: [] });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -71,8 +74,10 @@ export function LearningDbProvider({ children }: { children: ReactNode }) {
   }, []);
 
   useEffect(() => {
-    refreshDb();
-  }, [refreshDb]);
+    if (!authLoading) {
+      refreshDb();
+    }
+  }, [authLoading, refreshDb, user?.id, user?.role]);
 
   const value = useMemo<LearningDbContextType>(() => ({
     ...db,
@@ -93,6 +98,24 @@ export function LearningDbProvider({ children }: { children: ReactNode }) {
         ...current,
         students: current.students.map((student) =>
           student.id === studentId ? { ...student, assignedTeacherId: teacherId } : student,
+        ),
+      }));
+    },
+    deleteTeacher: async (teacherId) => {
+      const response = await fetch(`${API_URL}/teachers/${encodeURIComponent(teacherId)}`, {
+        method: 'DELETE',
+        headers: authHeaders(),
+      });
+
+      if (!response.ok) {
+        const payload = await response.json().catch(() => null);
+        throw new Error(payload?.error || 'Failed to delete teacher');
+      }
+
+      setDb((current) => ({
+        teachers: current.teachers.filter((teacher) => teacher.id !== teacherId),
+        students: current.students.map((student) =>
+          student.assignedTeacherId === teacherId ? { ...student, assignedTeacherId: null } : student,
         ),
       }));
     },

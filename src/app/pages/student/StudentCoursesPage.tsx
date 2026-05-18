@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { courses, mockLessons } from '../../data/mockData';
+import { useAppData } from '../../context/AppDataContext';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../components/ui/card';
 import { Button } from '../../components/ui/button';
 import { Progress } from '../../components/ui/progress';
@@ -9,15 +9,18 @@ import { Link } from 'react-router';
 import {ArrowRight, BookOpen, CheckCircle2, Lock, Play} from 'lucide-react';
 
 export default function StudentCoursesPage() {
+  const { courses, lessons, progress } = useAppData();
   const [activeTab, setActiveTab] = useState('in-progress');
 
-  // Mock data for enrolled courses
-  const enrolledCourse = courses[2]; // B1 Intermediate
-  const lessonsWithProgress = mockLessons.map((lesson, idx) => ({
+  const enrolledCourse = courses.find((course) => course.id === progress?.currentLevel.toLowerCase()) || courses[2] || courses[0];
+  const lessonsWithProgress = lessons.map((lesson, idx) => ({
     ...lesson,
-    completed: idx < 2,
-    locked: idx > 2,
+    locked: idx > Math.max(2, progress?.lessonsCompleted || 0),
   }));
+
+  if (!enrolledCourse) {
+    return <div className="text-gray-600">Loading courses...</div>;
+  }
 
   return (
     <div className="space-y-8">

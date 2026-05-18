@@ -21,10 +21,10 @@ export default function LoginPage() {
 
     try {
       const user = await login(email, password);
-      toast.success('Login successful!');
+      toast.success('Вход выполнен успешно!');
       navigate(user.role === 'admin' ? '/admin/assignments' : user.role === 'teacher' ? '/teacher/dashboard' : '/student/dashboard');
     } catch (error) {
-      toast.error('Не удалось войти. Попробуйте снова!');
+      toast.error(error instanceof Error ? error.message : 'Не удалось войти. Попробуйте снова!');
     } finally {
       setLoading(false);
     }
@@ -83,15 +83,6 @@ export default function LoginPage() {
                 {loading ? 'Вход в систему...' : 'Войти'} <ArrowRight/>
               </Button>
             </form>
-            <div className="mt-6 p-4 bg-blue-50 rounded-lg">
-              <p className="text-sm font-medium text-gray-900 mb-2">Тестовые аккаунты:</p>
-              <div className="text-xs text-gray-600 space-y-1">
-                <p>Ученик: student@linguafirst.com</p>
-                <p>Учитель: teacher@linguafirst.com</p>
-                <p>Админ: admin@linguafirst.com</p>
-                <p>Пароль: password</p>
-              </div>
-            </div>
           </CardContent>
           <CardFooter>
             <div className="text-sm text-center w-full text-gray-600">

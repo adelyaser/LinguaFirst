@@ -28,6 +28,7 @@ import LessonBuilderPage from "./pages/teacher/LessonBuilderPage";
 import TeacherProfilePage from "./pages/teacher/TeacherProfilePage";
 import AdminLayout from './layouts/AdminLayout';
 import AdminAssignmentsPage from './pages/admin/AdminAssignmentsPage';
+import AdminTeachersPage from './pages/admin/AdminTeachersPage';
 
 // Public Layout Wrapper
 function PublicLayout({ children }: { children: React.ReactNode }) {
@@ -167,6 +168,10 @@ export const router = createBrowserRouter([
       {
         path: 'assignments',
         element: <AdminAssignmentsPage />,
+      },
+      {
+        path: 'teachers',
+        element: <AdminTeachersPage />,
       },
     ],
   },

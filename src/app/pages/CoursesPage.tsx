@@ -1,4 +1,4 @@
-import { courses } from '../data/mockData';
+import { useAppData } from '../context/AppDataContext';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '../components/ui/card';
 import { Button } from '../components/ui/button';
 import { Badge } from '../components/ui/badge';
@@ -6,6 +6,8 @@ import { Link } from 'react-router';
 import { Clock, BookOpen, ArrowRight } from 'lucide-react';
 
 export default function CoursesPage() {
+  const { courses } = useAppData();
+
   return (
     <div className="min-h-screen bg-gray-50">
       <section className="bg-gradient-to-br from-blue-600 to-purple-600 text-white py-16">

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { upcomingLessons } from '../../data/mockData';
+import { useAppData } from '../../context/AppDataContext';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../components/ui/card';
 import { Button } from '../../components/ui/button';
 import { Badge } from '../../components/ui/badge';
@@ -7,6 +7,7 @@ import {Calendar as CalendarIcon, Clock, Video, Plus, ArrowRight, ArrowLeft} fro
 import { Link } from 'react-router';
 
 export default function TeacherSchedulePage() {
+  const { schedules: upcomingLessons } = useAppData();
   const [selectedDate, setSelectedDate] = useState(new Date());
 
   // Mock calendar data

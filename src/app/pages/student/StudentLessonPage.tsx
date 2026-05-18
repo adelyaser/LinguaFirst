@@ -1,16 +1,17 @@
 import { useState } from 'react';
 import { useParams, Link } from 'react-router';
-import { mockLessons } from '../../data/mockData';
+import { useAppData } from '../../context/AppDataContext';
 import { Card, CardContent, CardHeader, CardTitle } from '../../components/ui/card';
 import { Button } from '../../components/ui/button';
 import { Badge } from '../../components/ui/badge';
 import { Progress } from '../../components/ui/progress';
-import {ArrowLeft, ArrowRight, CheckCircle2, Play, Volume2} from 'lucide-react';
+import {ArrowLeft, ArrowRight, CheckCircle2, Play} from 'lucide-react';
 import { toast } from 'sonner';
 
 export default function StudentLessonPage() {
   const { lessonId } = useParams();
-  const lesson = mockLessons.find((l) => l.id === lessonId) || mockLessons[0];
+  const { lessons, completeLesson } = useAppData();
+  const lesson = lessons.find((l) => l.id === lessonId) || lessons[0];
 
   const [videoProgress, setVideoProgress] = useState(25);
   const [currentExercise, setCurrentExercise] = useState(0);
@@ -18,31 +19,11 @@ export default function StudentLessonPage() {
   const [showResult, setShowResult] = useState(false);
   const [completedExercises, setCompletedExercises] = useState<number[]>([]);
 
-  // Mock exercises
-  const exercises = [
-    {
-      type: 'multiple-choice',
-      question: 'What is the past tense of "go"?',
-      options: ['goed', 'went', 'gone', 'going'],
-      correct: 1,
-    },
-    {
-      type: 'fill-blank',
-      question: 'I ___ to the store yesterday.',
-      answer: 'went',
-    },
-    {
-      type: 'multiple-choice',
-      question: 'Which sentence is correct?',
-      options: [
-        'She go to school',
-        'She goes to school',
-        'She going to school',
-        'She goed to school',
-      ],
-      correct: 1,
-    },
-  ];
+  const exercises = lesson?.exercises || [];
+
+  if (!lesson || exercises.length === 0) {
+    return <div className="text-gray-600">Loading lesson...</div>;
+  }
 
   const handleCheckAnswer = () => {
     const currentEx = exercises[currentExercise];
@@ -64,7 +45,9 @@ export default function StudentLessonPage() {
       setSelectedAnswer(null);
       setShowResult(false);
     } else {
-      toast.success('Lesson completed! Great job! 🌟');
+      completeLesson(lesson.id)
+        .then(() => toast.success('Lesson completed! Great job!'))
+        .catch(() => toast.error('Failed to save lesson progress'));
     }
   };
 
