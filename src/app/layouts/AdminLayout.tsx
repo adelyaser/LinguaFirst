@@ -3,11 +3,14 @@ import { useEffect } from 'react';
 import { GraduationCap, LogOut, UserCog, UsersRound } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { useAuth } from '../context/AuthContext';
+import { useTranslation } from 'react-i18next';
+import { LanguageSwitcher } from '../components/LanguageSwitcher';
 
 export default function AdminLayout() {
   const { user, logout, isAuthenticated, loading } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (!loading && (!isAuthenticated || user?.role !== 'admin')) {
@@ -25,8 +28,8 @@ export default function AdminLayout() {
   }
 
   const navLinks = [
-    { to: '/admin/assignments', label: 'Назначения', icon: UsersRound },
-    { to: '/admin/teachers', label: 'Учителя', icon: UserCog },
+    { to: '/admin/assignments', label: t('admin.assignments'), icon: UsersRound },
+    { to: '/admin/teachers', label: t('admin.teachers'), icon: UserCog },
   ];
 
   return (
@@ -38,17 +41,18 @@ export default function AdminLayout() {
               <div className="w-10 h-10 bg-gradient-to-br from-slate-900 to-blue-700 rounded-lg flex items-center justify-center">
                 <GraduationCap className="w-6 h-6 text-white" />
               </div>
-              <span className="text-xl font-semibold text-gray-900">LinguaFirst Admin</span>
+              <span className="text-xl font-semibold text-gray-900">{t('admin.brand')}</span>
             </Link>
 
             <div className="flex items-center gap-4">
+              <LanguageSwitcher />
               <div className="hidden md:block text-right">
                 <div className="text-sm font-medium text-gray-900">{user.name}</div>
                 <div className="text-xs text-gray-500">{user.email}</div>
               </div>
               <Button variant="ghost" size="sm" onClick={handleLogout}>
                 <LogOut className="w-4 h-4 mr-2" />
-                Выйти
+                {t('common.logout')}
               </Button>
             </div>
           </div>

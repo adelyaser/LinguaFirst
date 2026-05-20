@@ -3,20 +3,23 @@ import { Button } from '../components/ui/button';
 import { useAuth } from '../context/AuthContext';
 import {ArrowRight, GraduationCap, Menu, X} from 'lucide-react';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { LanguageSwitcher } from './LanguageSwitcher';
 
 export function PublicNav() {
   const location = useLocation();
   const { isAuthenticated, user } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { t } = useTranslation();
 
   const navLinks = [
-    { to: '/', label: 'Главное' },
-    { to: '/about', label: 'О нас' },
-    { to: '/courses', label: 'Программы' },
-    { to: '/teachers', label: 'Учителя' },
-    { to: '/success-stories', label: 'Кейсы' },
-    { to: '/pricing', label: 'Тариф' },
-    { to: '/contact', label: 'Контакты' },
+    { to: '/', label: t('nav.home') },
+    { to: '/about', label: t('nav.about') },
+    { to: '/courses', label: t('nav.courses') },
+    { to: '/teachers', label: t('nav.teachers') },
+    { to: '/success-stories', label: t('nav.successStories') },
+    { to: '/pricing', label: t('nav.pricing') },
+    { to: '/contact', label: t('nav.contact') },
   ];
 
   const dashboardLink =
@@ -51,17 +54,18 @@ export function PublicNav() {
           </div>
 
           <div className="hidden md:flex items-center gap-3">
+            <LanguageSwitcher />
             {isAuthenticated ? (
               <Button asChild>
-                <Link to={dashboardLink}>Dashboard</Link>
+                <Link to={dashboardLink}>{t('common.dashboard')}</Link>
               </Button>
             ) : (
               <>
                 <Button variant="ghost" asChild>
-                  <Link to="/login">Войти</Link>
+                  <Link to="/login">{t('nav.login')}</Link>
                 </Button>
                 <Button asChild>
-                  <Link to="/signup">Начать <ArrowRight className="ml-2 w-5 h-5" /></Link>
+                  <Link to="/signup">{t('nav.start')} <ArrowRight className="ml-2 w-5 h-5" /></Link>
                 </Button>
               </>
             )}
@@ -95,17 +99,18 @@ export function PublicNav() {
                 </Link>
               ))}
               <div className="flex flex-col gap-2 pt-4 border-t border-gray-200">
+                <LanguageSwitcher />
                 {isAuthenticated ? (
                   <Button asChild onClick={() => setMobileMenuOpen(false)}>
-                    <Link to={dashboardLink}>Dashboard</Link>
+                    <Link to={dashboardLink}>{t('common.dashboard')}</Link>
                   </Button>
                 ) : (
                   <>
                     <Button variant="ghost" asChild onClick={() => setMobileMenuOpen(false)}>
-                      <Link to="/login">Войти</Link>
+                      <Link to="/login">{t('nav.login')}</Link>
                     </Button>
                     <Button asChild onClick={() => setMobileMenuOpen(false)}>
-                      <Link to="/signup">Начать</Link>
+                      <Link to="/signup">{t('nav.start')}</Link>
                     </Button>
                   </>
                 )}

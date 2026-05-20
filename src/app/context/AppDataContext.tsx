@@ -1,5 +1,7 @@
 import { createContext, ReactNode, useCallback, useContext, useEffect, useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { getAuthToken, useAuth } from './AuthContext';
+import { localizeCourses, localizeLessons, localizePricingPlans, localizeSchedules, localizeStories } from '../i18n/localizeData';
 
 export interface Course {
   id: string;
@@ -132,6 +134,7 @@ async function getJson<T>(path: string, auth = false): Promise<T> {
 
 export function AppDataProvider({ children }: { children: ReactNode }) {
   const { user, loading: authLoading } = useAuth();
+  const { t, i18n } = useTranslation();
   const [courses, setCourses] = useState<Course[]>([]);
   const [lessons, setLessons] = useState<Lesson[]>([]);
   const [schedules, setSchedules] = useState<ScheduleLesson[]>([]);
@@ -188,12 +191,12 @@ export function AppDataProvider({ children }: { children: ReactNode }) {
   }, [authLoading, refresh, user?.id, user?.role]);
 
   const value = useMemo<AppDataContextType>(() => ({
-    courses,
-    lessons,
-    schedules,
+    courses: localizeCourses(courses, t),
+    lessons: localizeLessons(lessons, t),
+    schedules: localizeSchedules(schedules, t),
     progress,
-    pricingPlans,
-    successStories,
+    pricingPlans: localizePricingPlans(pricingPlans, t),
+    successStories: localizeStories(successStories, t),
     levelTestQuestions,
     loading,
     error,
@@ -222,7 +225,7 @@ export function AppDataProvider({ children }: { children: ReactNode }) {
         body: JSON.stringify({ level, score }),
       });
     },
-  }), [courses, error, lessons, levelTestQuestions, loading, pricingPlans, progress, refresh, schedules, successStories]);
+  }), [courses, error, i18n.resolvedLanguage, lessons, levelTestQuestions, loading, pricingPlans, progress, refresh, schedules, successStories, t]);
 
   return <AppDataContext.Provider value={value}>{children}</AppDataContext.Provider>;
 }

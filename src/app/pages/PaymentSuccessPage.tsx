@@ -1,9 +1,13 @@
 import { Link } from 'react-router';
+import { CheckCircle2, Download } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { Button } from '../components/ui/button';
-import { CheckCircle2, Download } from 'lucide-react';
 
 export default function PaymentSuccessPage() {
+  const { t } = useTranslation();
+  const items = t('paymentSuccessPage.items', { returnObjects: true }) as string[];
+
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
       <Card className="max-w-2xl w-full">
@@ -11,54 +15,30 @@ export default function PaymentSuccessPage() {
           <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
             <CheckCircle2 className="w-10 h-10 text-green-600" />
           </div>
-          <CardTitle className="text-3xl">Payment Successful!</CardTitle>
+          <CardTitle className="text-3xl">{t('paymentSuccessPage.title')}</CardTitle>
         </CardHeader>
         <CardContent className="text-center space-y-6 pt-6">
-          <p className="text-lg text-gray-600">
-            Welcome to EnglishPro! Your account has been activated and you're ready to start learning.
-          </p>
-
+          <p className="text-lg text-gray-600">{t('paymentSuccessPage.description')}</p>
           <div className="bg-blue-50 rounded-lg p-6 text-left">
-            <h3 className="font-semibold text-gray-900 mb-4">What's Next?</h3>
+            <h3 className="font-semibold text-gray-900 mb-4">{t('paymentSuccessPage.next')}</h3>
             <ul className="space-y-3">
-              <li className="flex items-start gap-3">
-                <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
-                <span className="text-sm text-gray-700">
-                  Complete your profile and set your learning goals
-                </span>
-              </li>
-              <li className="flex items-start gap-3">
-                <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
-                <span className="text-sm text-gray-700">
-                  Browse our course materials and start your first lesson
-                </span>
-              </li>
-              <li className="flex items-start gap-3">
-                <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
-                <span className="text-sm text-gray-700">
-                  Schedule your first live class with a teacher
-                </span>
-              </li>
-              <li className="flex items-start gap-3">
-                <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
-                <span className="text-sm text-gray-700">
-                  Join our community forum to connect with other students
-                </span>
-              </li>
+              {items.map((item) => (
+                <li key={item} className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                  <span className="text-sm text-gray-700">{item}</span>
+                </li>
+              ))}
             </ul>
           </div>
-
           <div className="border-t border-gray-200 pt-6 space-y-4">
-            <div className="text-sm text-gray-600">
-              A confirmation email has been sent to your inbox with your receipt and account details.
-            </div>
+            <div className="text-sm text-gray-600">{t('paymentSuccessPage.email')}</div>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Button size="lg" asChild>
-                <Link to="/student/dashboard">Go to Dashboard</Link>
+                <Link to="/student/dashboard">{t('paymentSuccessPage.dashboard')}</Link>
               </Button>
               <Button size="lg" variant="outline">
                 <Download className="w-4 h-4 mr-2" />
-                Download Receipt
+                {t('paymentSuccessPage.receipt')}
               </Button>
             </div>
           </div>

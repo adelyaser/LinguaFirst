@@ -4,6 +4,7 @@ import { AppDataProvider } from './context/AppDataContext';
 import { LearningDbProvider } from './context/LearningDbContext';
 import { router } from './routes';
 import { Toaster } from './components/ui/sonner';
+import { GlobalDomTranslator } from './i18n/GlobalDomTranslator';
 
 export default function App() {
   return (
@@ -11,6 +12,7 @@ export default function App() {
       <AppDataProvider>
         <LearningDbProvider>
           <RouterProvider router={router} />
+          <GlobalDomTranslator />
           <Toaster />
         </LearningDbProvider>
       </AppDataProvider>

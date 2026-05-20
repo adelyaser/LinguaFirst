@@ -3,11 +3,14 @@ import { useAuth } from '../context/AuthContext';
 import { Button } from '../components/ui/button';
 import { GraduationCap, LayoutDashboard, BookOpen, Calendar, LogOut, User } from 'lucide-react';
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+import { LanguageSwitcher } from '../components/LanguageSwitcher';
 
 export default function StudentLayout() {
   const { user, logout, isAuthenticated, loading } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (!loading && (!isAuthenticated || user?.role !== 'student')) {
@@ -16,10 +19,10 @@ export default function StudentLayout() {
   }, [isAuthenticated, loading, user, navigate]);
 
   const navLinks = [
-    { to: '/student/dashboard', label: 'Главная', icon: LayoutDashboard },
-    { to: '/student/courses', label: 'Мои курсы', icon: BookOpen },
-    { to: '/student/schedule', label: 'Расписание', icon: Calendar },
-    { to: '/student/profile', label: 'Профиль', icon: User },
+    { to: '/student/dashboard', label: t('student.dashboard'), icon: LayoutDashboard },
+    { to: '/student/courses', label: t('student.courses'), icon: BookOpen },
+    { to: '/student/schedule', label: t('student.schedule'), icon: Calendar },
+    { to: '/student/profile', label: t('student.profile'), icon: User },
   ];
 
   const handleLogout = () => {
@@ -44,13 +47,14 @@ export default function StudentLayout() {
             </Link>
 
             <div className="flex items-center gap-4">
+              <LanguageSwitcher />
               <div className="hidden md:block text-right">
                 <div className="text-sm font-medium text-gray-900">{user.name}</div>
                 <div className="text-xs text-gray-500">{user.email}</div>
               </div>
               <Button variant="ghost" size="sm" onClick={handleLogout}>
                 <LogOut className="w-4 h-4 mr-2" />
-                Выйти
+                {t('common.logout')}
               </Button>
             </div>
           </div>
