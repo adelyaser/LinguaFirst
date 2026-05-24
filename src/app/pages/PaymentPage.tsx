@@ -75,7 +75,7 @@ export default function PaymentPage() {
                   </div>
                 </div>
                 <Button type="submit" size="lg" className="w-full">
-                  {t('paymentPage.pay')} ${plan.price} / {plan.period}
+                  {t('paymentPage.pay')} ₸{plan.price} / {plan.period}
                 </Button>
                 <p className="text-xs text-center text-gray-600">{t('paymentPage.terms')}</p>
               </form>
@@ -96,16 +96,15 @@ export default function PaymentPage() {
                   <p className="text-sm text-gray-600">{plan.description}</p>
                 </div>
                 <div className="border-t border-gray-200 pt-4 space-y-2">
-                  <div className="flex justify-between text-sm"><span className="text-gray-600">{t('paymentPage.subtotal')}</span><span className="font-medium">${plan.price}</span></div>
-                  <div className="flex justify-between text-sm"><span className="text-gray-600">{t('paymentPage.tax')} (0%)</span><span className="font-medium">$0</span></div>
-                  <div className="flex justify-between text-sm"><span className="text-gray-600">{t('paymentPage.discount')} (30%)</span><span className="font-medium text-green-600">-${(plan.price * 0.3).toFixed(0)}</span></div>
+                  <div className="flex justify-between text-sm"><span className="text-gray-600">{t('paymentPage.subtotal')}</span><span className="font-medium">₸{plan.price}</span></div>
+                  <div className="flex justify-between text-sm"><span className="text-gray-600">{t('paymentPage.tax')} (0%)</span><span className="font-medium">₸0</span></div>
+                  <div className="flex justify-between text-sm"><span className="text-gray-600">{t('paymentPage.discount')} (30%)</span><span className="font-medium text-green-600">-₸{(plan.price * 0.3).toFixed(0)}</span></div>
                 </div>
                 <div className="border-t border-gray-200 pt-4">
                   <div className="flex justify-between">
                     <span className="font-semibold text-gray-900">{t('paymentPage.total')}</span>
-                    <span className="font-bold text-2xl text-gray-900">${(plan.price * 0.7).toFixed(0)}</span>
+                    <span className="font-bold text-2xl text-gray-900">₸{(plan.price * 0.7).toFixed(0)}</span>
                   </div>
-                  <p className="text-xs text-gray-600 mt-2">{t('paymentPage.then', { price: `$${plan.price}`, period: plan.period })}</p>
                 </div>
               </CardContent>
             </Card>

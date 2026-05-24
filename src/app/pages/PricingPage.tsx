@@ -36,8 +36,7 @@ export default function PricingPage() {
                   <CardTitle className="text-2xl mb-2">{plan.name}</CardTitle>
                   <CardDescription className="text-base mb-4">{plan.description}</CardDescription>
                   <div className="mt-4">
-                    <span className="text-5xl font-bold text-gray-900">${plan.price}</span>
-                    <span className="text-gray-600">/{plan.period}</span>
+                    <span className="text-5xl font-bold text-gray-900">₸{plan.price}</span>
                   </div>
                 </CardHeader>
                 <CardContent className="space-y-4">

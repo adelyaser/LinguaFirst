@@ -85,15 +85,6 @@ export default function ContactPage() {
                     <p className="text-gray-600 text-sm">+7 (555) 987-6543</p>
                   </div>
                 </div>
-                <div className="flex gap-4">
-                  <div className="w-12 h-12 bg-purple-200 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Video className="w-6 h-6 text-purple-700" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900 mb-1">IG & Tiktok</h3>
-                    <p className="text-gray-600 text-sm">{t('contactPage.workHours')}</p>
-                  </div>
-                </div>
               </CardContent>
             </Card>
           </div>

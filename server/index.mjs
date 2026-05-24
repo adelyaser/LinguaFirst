@@ -94,9 +94,9 @@ const progressRows = [
 ];
 
 const pricingPlans = [
-  ['basic', 'Basic', 49, 'month', 'Good start for beginners.', ['4 group lessons per month', 'Learning materials', 'Community forum', 'Progress tracking'], ['Individual lessons', 'Homework review', 'Certificate'], false],
-  ['standard', 'Standard', 99, 'month', 'Most popular plan for steady learning.', ['8 group lessons per month', '2 individual lessons per month', 'All materials', 'Homework review', 'Monthly testing'], ['Certificate'], true],
-  ['premium', 'Premium', 199, 'month', 'Maximum flexibility and personal support.', ['Unlimited group lessons', '8 individual lessons per month', 'Priority support', 'Homework review', 'Certificate'], [], false],
+  ['basic', 'Basic', 25000, 'month', 'Good start for beginners.', ['4 group lessons per month', 'Learning materials', 'Community forum', 'Progress tracking'], ['Individual lessons', 'Homework review', 'Certificate'], false],
+  ['standard', 'Standard', 50000, 'month', 'Most popular plan for steady learning.', ['8 group lessons per month', '2 individual lessons per month', 'All materials', 'Homework review', 'Monthly testing'], ['Certificate'], true],
+  ['premium', 'Premium', 90000, 'month', 'Maximum flexibility and personal support.', ['Unlimited group lessons', '8 individual lessons per month', 'Priority support', 'Homework review', 'Certificate'], [], false],
 ];
 
 const successStories = [

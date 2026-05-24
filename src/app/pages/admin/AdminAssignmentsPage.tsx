@@ -88,7 +88,6 @@ export default function AdminAssignmentsPage() {
       <Card>
         <CardHeader>
           <CardTitle>Закрепление учеников</CardTitle>
-          <CardDescription>Изменения сохраняются в PostgreSQL-базе на сервере.</CardDescription>
         </CardHeader>
         <CardContent>
           <Table>
