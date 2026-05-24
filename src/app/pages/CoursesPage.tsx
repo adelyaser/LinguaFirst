@@ -49,7 +49,7 @@ export default function CoursesPage() {
                 <CardHeader>
                   <div className="flex items-start justify-between mb-4">
                     <Badge className={`${course.color} text-white border-0`}>{course.level}</Badge>
-                    <div className="text-2xl font-bold text-gray-900">${course.price}</div>
+                    <div className="text-2xl font-bold text-gray-900">₸{course.price}</div>
                   </div>
                   <CardTitle className="text-2xl">{course.title}</CardTitle>
                   <CardDescription className="text-base">{course.description}</CardDescription>

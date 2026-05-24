@@ -98,6 +98,7 @@
     "signupError": "Аккаунт не создан. Произошла ошибка.",
     "passwordMismatch": "Пароли не совпадают",
     "passwordTooShort": "Пароль должен состоять минимум из 6 символов.",
+    "emailDomainOnly": "Регистрация доступна только с почтой @linguafirst.com.",
     "hasAccount": "Уже есть аккаунт?",
     "loginLink": "Войдите",
     "resetTitle": "Восстановление пароля",

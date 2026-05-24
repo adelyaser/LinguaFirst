@@ -11,6 +11,8 @@ import { RadioGroup, RadioGroupItem } from '../components/ui/radio-group';
 import { useAuth, UserRole } from '../context/AuthContext';
 import { LanguageSwitcher } from '../components/LanguageSwitcher';
 
+const ALLOWED_EMAIL_PATTERN = /^[^@\s]+@linguafirst\.com$/i;
+
 export default function SignupPage() {
   const [searchParams] = useSearchParams();
   const defaultRole = (searchParams.get('role') as UserRole) || 'student';
@@ -36,6 +38,11 @@ export default function SignupPage() {
 
     if (formData.password.length < 6) {
       toast.error(t('auth.passwordTooShort'));
+      return;
+    }
+
+    if (!ALLOWED_EMAIL_PATTERN.test(formData.email.trim())) {
+      toast.error(t('auth.emailDomainOnly'));
       return;
     }
 
@@ -109,7 +116,17 @@ export default function SignupPage() {
 
               <div className="space-y-2">
                 <Label htmlFor="email">{t('common.email')}</Label>
-                <Input id="email" name="email" type="email" placeholder="jungkook@linguafirst.com" value={formData.email} onChange={handleChange} required />
+                <Input
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="jungkook@linguafirst.com"
+                  pattern="^[^@\s]+@linguafirst\.com$"
+                  title={t('auth.emailDomainOnly')}
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                />
               </div>
 
               <div className="space-y-2">

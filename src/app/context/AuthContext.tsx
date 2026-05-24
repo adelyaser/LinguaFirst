@@ -22,6 +22,7 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000/api';
 const AUTH_TOKEN_KEY = 'linguafirst_auth_token';
+const ALLOWED_SIGNUP_EMAIL_PATTERN = /^[^@\s]+@linguafirst\.com$/i;
 
 async function parseAuthResponse(response: Response) {
   const payload = await response.json().catch(() => ({}));
@@ -70,6 +71,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const signup = async (email: string, password: string, name: string, role: UserRole) => {
+    if (!ALLOWED_SIGNUP_EMAIL_PATTERN.test(email.trim())) {
+      throw new Error('Registration is available only with @linguafirst.com email addresses');
+    }
+
     const payload = await parseAuthResponse(await fetch(`${API_URL}/auth/signup`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

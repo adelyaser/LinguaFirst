@@ -191,12 +191,12 @@ export function AppDataProvider({ children }: { children: ReactNode }) {
   }, [authLoading, refresh, user?.id, user?.role]);
 
   const value = useMemo<AppDataContextType>(() => ({
-    courses: localizeCourses(courses, t),
-    lessons: localizeLessons(lessons, t),
-    schedules: localizeSchedules(schedules, t),
+    courses: localizeCourses(courses, i18n.resolvedLanguage),
+    lessons: localizeLessons(lessons, i18n.resolvedLanguage),
+    schedules: localizeSchedules(schedules, t, i18n.resolvedLanguage),
     progress,
-    pricingPlans: localizePricingPlans(pricingPlans, t),
-    successStories: localizeStories(successStories, t),
+    pricingPlans: localizePricingPlans(pricingPlans, i18n.resolvedLanguage),
+    successStories: localizeStories(successStories, i18n.resolvedLanguage),
     levelTestQuestions,
     loading,
     error,

@@ -98,6 +98,7 @@
     "signupError": "Аккаунт жасалмады. Қате орын алды.",
     "passwordMismatch": "Құпиясөздер сәйкес емес",
     "passwordTooShort": "Құпиясөз кемінде 6 таңбадан тұруы керек.",
+    "emailDomainOnly": "Тіркелу тек @linguafirst.com поштасымен қолжетімді.",
     "hasAccount": "Аккаунтыңыз бар ма?",
     "loginLink": "Кіріңіз",
     "resetTitle": "Құпиясөзді қалпына келтіру",

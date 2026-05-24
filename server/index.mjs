@@ -28,6 +28,7 @@ const DATABASE_URL = process.env.DATABASE_URL || 'postgres://postgres:postgres@l
 const DATABASE_SCHEMA = process.env.DATABASE_SCHEMA || 'linguafirst';
 const SESSION_TTL_MS = 1000 * 60 * 60 * 24 * 7;
 const DEFAULT_PASSWORD = 'password';
+const SIGNUP_EMAIL_PATTERN = /^[^@\s]+@linguafirst\.com$/i;
 
 if (!/^[a-zA-Z_][a-zA-Z0-9_]*$/.test(DATABASE_SCHEMA)) {
   console.error('DATABASE_SCHEMA must contain only letters, numbers and underscores, and must not start with a number.');
@@ -58,11 +59,11 @@ const students = [
 ];
 
 const courses = [
-  ['a1', 'A1', 'Beginner', 'Start learning English from zero.', '3 months', 24, 199, 'bg-green-500', ['Basic vocabulary', 'Simple grammar', 'Everyday phrases']],
-  ['a2', 'A2', 'Elementary', 'Build confidence with everyday English.', '3 months', 24, 249, 'bg-blue-500', ['Wider vocabulary', 'Past tenses', 'Common expressions']],
-  ['b1', 'B1', 'Intermediate', 'Speak more freely in practical situations.', '4 months', 32, 299, 'bg-purple-500', ['Complex sentences', 'Idioms', 'Work communication']],
-  ['b2', 'B2', 'Upper Intermediate', 'Use advanced structures and precise vocabulary.', '4 months', 32, 349, 'bg-orange-500', ['Advanced grammar', 'Fluent discussions', 'Academic writing']],
-  ['c1', 'C1', 'Advanced', 'Reach confident, near-native communication.', '5 months', 40, 399, 'bg-red-500', ['Natural fluency', 'Nuanced communication', 'Exam-level writing']],
+  ['a1', 'A1', 'Beginner', 'Start learning English from zero.', '3 months', 24, 75000, 'bg-green-500', ['Basic vocabulary', 'Simple grammar', 'Everyday phrases']],
+  ['a2', 'A2', 'Elementary', 'Build confidence with everyday English.', '3 months', 24, 117000, 'bg-blue-500', ['Wider vocabulary', 'Past tenses', 'Common expressions']],
+  ['b1', 'B1', 'Intermediate', 'Speak more freely in practical situations.', '4 months', 32, 140000, 'bg-purple-500', ['Complex sentences', 'Idioms', 'Work communication']],
+  ['b2', 'B2', 'Upper Intermediate', 'Use advanced structures and precise vocabulary.', '4 months', 32, 165000, 'bg-orange-500', ['Advanced grammar', 'Fluent discussions', 'Academic writing']],
+  ['c1', 'C1', 'Advanced', 'Reach confident, near-native communication.', '5 months', 40, 180000, 'bg-red-500', ['Natural fluency', 'Nuanced communication', 'Exam-level writing']],
 ];
 
 const lessons = [
@@ -493,10 +494,14 @@ async function route(req, res) {
   if (req.method === 'POST' && url.pathname === '/api/auth/signup') {
     const { email, password, name, role } = await readJson(req);
     const userRole = ['student', 'teacher', 'admin'].includes(role) ? role : 'student';
+    const normalizedEmail = String(email || '').trim().toLowerCase();
 
     if (!email || !password || !name) return sendJson(res, 400, { error: 'Name, email and password are required' });
+    if (!SIGNUP_EMAIL_PATTERN.test(normalizedEmail)) {
+      return sendJson(res, 400, { error: 'Registration is available only with @linguafirst.com email addresses' });
+    }
     if (String(password).length < 6) return sendJson(res, 400, { error: 'Password must be at least 6 characters' });
-    if (await one('SELECT id FROM users WHERE lower(email) = lower($1)', [email])) return sendJson(res, 409, { error: 'Email already exists' });
+    if (await one('SELECT id FROM users WHERE lower(email) = lower($1)', [normalizedEmail])) return sendJson(res, 409, { error: 'Email already exists' });
 
     const id = `${userRole}-${crypto.randomUUID()}`;
     const profileRefId = userRole === 'admin' ? null : id;
@@ -505,13 +510,13 @@ async function route(req, res) {
     try {
       await client.query('BEGIN');
       if (userRole === 'teacher') {
-        await client.query('INSERT INTO teachers (id, name, level, specialty, email) VALUES ($1, $2, $3, $4, $5)', [id, name, 'B2', 'General English', email]);
+        await client.query('INSERT INTO teachers (id, name, level, specialty, email) VALUES ($1, $2, $3, $4, $5)', [id, name, 'B2', 'General English', normalizedEmail]);
       }
       if (userRole === 'student') {
-        await client.query('INSERT INTO students (id, name, email, level, progress, assigned_teacher_id) VALUES ($1, $2, $3, $4, $5, $6)', [id, name, email, 'A1', 0, null]);
+        await client.query('INSERT INTO students (id, name, email, level, progress, assigned_teacher_id) VALUES ($1, $2, $3, $4, $5, $6)', [id, name, normalizedEmail, 'A1', 0, null]);
         await client.query('INSERT INTO student_progress (student_id, course_id, overall_progress, lessons_completed, total_lessons, study_streak, hours_studied) VALUES ($1, $2, $3, $4, $5, $6, $7)', [id, 'a1', 0, 0, 24, 0, 0]);
       }
-      await client.query('INSERT INTO users (id, name, email, role, password_hash, profile_ref_id) VALUES ($1, $2, $3, $4, $5, $6)', [id, name, email, userRole, hashPassword(password), profileRefId]);
+      await client.query('INSERT INTO users (id, name, email, role, password_hash, profile_ref_id) VALUES ($1, $2, $3, $4, $5, $6)', [id, name, normalizedEmail, userRole, hashPassword(password), profileRefId]);
       await client.query('COMMIT');
     } catch (error) {
       await client.query('ROLLBACK');
@@ -520,7 +525,7 @@ async function route(req, res) {
       client.release();
     }
 
-    return sendJson(res, 201, { token: await createSession(id), user: { id, name, email, role: userRole } });
+    return sendJson(res, 201, { token: await createSession(id), user: { id, name, email: normalizedEmail, role: userRole } });
   }
 
   if (req.method === 'GET' && url.pathname === '/api/auth/me') {

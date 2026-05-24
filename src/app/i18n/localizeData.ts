@@ -97,16 +97,19 @@ const pricingText = {
 const storyText = {
   'story-1': {
     country: ['Астана', 'Astana', 'Астана'],
+    achievement: ['IELTS 8.0', 'IELTS 8.0', 'IELTS 8.0'],
     story: ['От B1 до C1 за шесть месяцев, теперь учится за рубежом.', 'From B1 to C1 in six months, now studying abroad.', 'Алты айда B1-ден C1-ге жетіп, қазір шетелде оқиды.'],
     duration: ['6 месяцев', '6 months', '6 ай'],
   },
   'story-2': {
     country: ['Актау', 'Aktau', 'Ақтау'],
-    story: ['Улучшил speaking с 5.5 до 7.5 и получил новую роль.', 'Improved speaking from 5.5 to 7.5 and got a new role.', 'Speaking бағасын 5.5-тен 7.5-ке көтеріп, жаңа қызмет алды.'],
+    achievement: ['IELTS 7.5', 'IELTS 7.5', 'IELTS 7.5'],
+    story: ['Улучшил speaking с 5.5 до 7.5 и получил новую должность.', 'Improved speaking from 5.5 to 7.5 and got a new role.', 'Speaking бағасын 5.5-тен 7.5-ке көтеріп, жаңа қызмет алды.'],
     duration: ['4 месяца', '4 months', '4 ай'],
   },
   'story-3': {
     country: ['Алматы', 'Almaty', 'Алматы'],
+    achievement: ['Бизнес-английский', 'Business English', 'Бизнес ағылшын'],
     story: ['Получила повышение после курса бизнес-английского B2.', 'Promoted after completing the B2 business course.', 'B2 бизнес ағылшын курсынан кейін қызметі өсті.'],
     duration: ['8 месяцев', '8 months', '8 ай'],
   },
@@ -133,47 +136,46 @@ const scheduleText = {
   'schedule-3': ['Бизнес-английский: презентации', 'Business English: Presentations', 'Бизнес ағылшын: презентациялар'],
 } as const;
 
-function langIndex(t: TFunction) {
-  const language = t('common.language');
-  if (language === 'English') return 1;
-  if (language === 'Тіл') return 2;
+function langIndex(language?: string) {
+  if (language?.startsWith('en')) return 1;
+  if (language?.startsWith('kk')) return 2;
   return 0;
 }
 
-export function localizeCourses(courses: Course[], t: TFunction): Course[] {
-  const index = langIndex(t);
+export function localizeCourses(courses: Course[], language?: string): Course[] {
+  const index = langIndex(language);
   return courses.map((course) => {
     const text = courseText[course.id as keyof typeof courseText];
     return text ? { ...course, title: text.title[index], description: text.description[index], duration: text.duration[index], skills: [...text.skills[index]] } : course;
   });
 }
 
-export function localizePricingPlans(plans: PricingPlan[], t: TFunction): PricingPlan[] {
-  const index = langIndex(t);
+export function localizePricingPlans(plans: PricingPlan[], language?: string): PricingPlan[] {
+  const index = langIndex(language);
   return plans.map((plan) => {
     const text = pricingText[plan.id as keyof typeof pricingText];
     return text ? { ...plan, name: text.name[index], period: text.period[index], description: text.description[index], features: [...text.features[index]], notIncluded: [...text.notIncluded[index]] } : plan;
   });
 }
 
-export function localizeStories(stories: SuccessStory[], t: TFunction): SuccessStory[] {
-  const index = langIndex(t);
+export function localizeStories(stories: SuccessStory[], language?: string): SuccessStory[] {
+  const index = langIndex(language);
   return stories.map((story) => {
     const text = storyText[story.id as keyof typeof storyText];
-    return text ? { ...story, country: text.country[index], story: text.story[index], duration: text.duration[index] } : story;
+    return text ? { ...story, country: text.country[index], achievement: text.achievement[index], story: text.story[index], duration: text.duration[index] } : story;
   });
 }
 
-export function localizeLessons(lessons: Lesson[], t: TFunction): Lesson[] {
-  const index = langIndex(t);
+export function localizeLessons(lessons: Lesson[], language?: string): Lesson[] {
+  const index = langIndex(language);
   return lessons.map((lesson) => {
     const text = lessonText[lesson.id as keyof typeof lessonText];
     return text ? { ...lesson, title: text.title[index], description: text.description[index] } : lesson;
   });
 }
 
-export function localizeSchedules(schedules: ScheduleLesson[], t: TFunction): ScheduleLesson[] {
-  const index = langIndex(t);
+export function localizeSchedules(schedules: ScheduleLesson[], t: TFunction, language?: string): ScheduleLesson[] {
+  const index = langIndex(language);
   return schedules.map((schedule) => ({
     ...schedule,
     title: scheduleText[schedule.id as keyof typeof scheduleText]?.[index] || schedule.title,

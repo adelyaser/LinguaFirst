@@ -98,6 +98,7 @@
     "signupError": "Account was not created. An error occurred.",
     "passwordMismatch": "Passwords do not match",
     "passwordTooShort": "Password must be at least 6 characters.",
+    "emailDomainOnly": "Registration is available only with @linguafirst.com email addresses.",
     "hasAccount": "Already have an account?",
     "loginLink": "Log in",
     "resetTitle": "Reset your password",
