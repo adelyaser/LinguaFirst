@@ -4,8 +4,7 @@ import { useAppData } from '../../context/AppDataContext';
 import { Card, CardContent, CardHeader, CardTitle } from '../../components/ui/card';
 import { Button } from '../../components/ui/button';
 import { Badge } from '../../components/ui/badge';
-import { Progress } from '../../components/ui/progress';
-import {ArrowLeft, ArrowRight, CheckCircle2, Play} from 'lucide-react';
+import {ArrowLeft, ArrowRight, CheckCircle2} from 'lucide-react';
 import { toast } from 'sonner';
 
 export default function StudentLessonPage() {
@@ -13,7 +12,6 @@ export default function StudentLessonPage() {
   const { lessons, completeLesson } = useAppData();
   const lesson = lessons.find((l) => l.id === lessonId) || lessons[0];
 
-  const [videoProgress, setVideoProgress] = useState(25);
   const [currentExercise, setCurrentExercise] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const [showResult, setShowResult] = useState(false);
@@ -74,24 +72,15 @@ export default function StudentLessonPage() {
           <CardTitle>Видео-урок</CardTitle>
         </CardHeader>
         <CardContent>
-          {/* Mock Video Player */}
-          <div className="aspect-video bg-gray-900 rounded-lg flex items-center justify-center mb-4">
-            <Button
-              size="lg"
-              className="w-16 h-16 rounded-full"
-              onClick={() => {
-                toast.info('Video playing... (mock)');
-                setVideoProgress(75);
-              }}
-            >
-              <Play className="w-8 h-8" />
-            </Button>
+          <div className="aspect-video overflow-hidden rounded-lg bg-gray-900">
+            <iframe
+              className="h-full w-full"
+              src="https://www.youtube.com/embed/Hp9wUEDasY4"
+              title="Video lesson"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            />
           </div>
-
-          <div className="space-y-2">
-            <Progress value={videoProgress} className="h-2" />
-          </div>
-
         </CardContent>
       </Card>
       <Card>
